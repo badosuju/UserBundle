@@ -1,0 +1,45 @@
+{
+  "name": "ampisoft/userbundle",
+  "type": "library",
+  "description": "An intuitive and usable user bundle",
+  "keywords": [
+    "framework",
+    "user",
+    "authentication"
+
+  ],
+  "homepage": "http://www.ampisoft.com/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Matt Holbrook-Bull",
+      "email": "matt@ampisoft.com",
+      "homepage": "https://github.com/mtdowling"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.0",
+
+  },
+  "require-dev": {
+
+  },
+  "autoload": {
+    "files": [
+      "src/functions_include.php"
+    ],
+    "psr-4": {
+      "GuzzleHttp\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "GuzzleHttp\\Tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "6.1-dev"
+    }
+  }
+}

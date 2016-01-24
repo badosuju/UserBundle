@@ -12,6 +12,7 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Symfony\Component\Validator\Validator;
 use Symfony\Component\Validator\Validator\RecursiveValidator;
 
 /**
@@ -21,7 +22,6 @@ use Symfony\Component\Validator\Validator\RecursiveValidator;
  * @package AmpUserBundle\Security
  */
 class OAuthUserProvider implements OAuthAwareUserProviderInterface, UserProviderInterface {
-
 
     /**
      * @var UserManager

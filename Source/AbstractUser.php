@@ -2,6 +2,7 @@
 namespace AmpUserBundle\Source;
 
 use AmpUserBundle\Source\Traits\GetSafeTrait;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -73,12 +74,59 @@ abstract class AbstractUser implements UserInterface {
      */
     protected $guest = false;
 
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     *
+     */
+    protected $fullName = null;
+
+
+    /**
+     * User constructor.
+     */
+    public function __construct() {
+
+        $seed = new \DateTime;
+
+        $this->apiToken = openssl_digest( $seed->getTimestamp(), 'sha1' );
+    }
+
+    public function setUsername( $username ) {
+        if ( !$this->fullName ) {
+            $this->fullName = $username;
+        }
+
+        $this->username = $username;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString() {
+        return (string) $this->getUsername() . '-';
+    }
+
+    public function getFullName() {
+        return $this->fullName;
+    }
+
+
+    public function setFullName( $fullName ) {
+        $this->fullName = $fullName;
+    }
+
     /**
      * @ORM\Column(type="string", length=150, nullable=true)
      * @Assert\Url()
      * @Assert\NotBlank()
      */
     protected $url = null;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $apiToken;
 
     public function isGranted($role) {
         return in_array($role, $this->getRoles());
@@ -139,11 +187,6 @@ abstract class AbstractUser implements UserInterface {
      */
     public function getUsername() {
         return $this->username;
-    }
-
-    public function setUsername( $username ) {
-        $this->username = $username;
-        return $this;
     }
 
     public function getPlainPassword() {
@@ -211,6 +254,13 @@ abstract class AbstractUser implements UserInterface {
      */
     public function eraseCredentials() {
         $this->plainPassword = null;
+    }
 
+    public function getApiToken() {
+        return $this->apiToken;
+    }
+
+    public function setApiToken( $apiToken ) {
+        $this->apiToken = $apiToken;
     }
 }

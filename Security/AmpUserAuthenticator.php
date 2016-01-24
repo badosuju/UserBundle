@@ -83,7 +83,7 @@ class AmpUserAuthenticator extends AbstractGuardAuthenticator {
     /**
      * @param mixed $credentials
      * @param UserProviderInterface $userProvider
-     * @return \AmpUserBundle\Entity\User|null|object
+     * @return \AppBundle\Entity\User|null|object
      */
     public function getUser( $credentials, UserProviderInterface $userProvider ) {
 

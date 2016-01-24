@@ -4,6 +4,7 @@ namespace AmpUserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -18,7 +19,7 @@ class SecurityController extends Controller {
     /**
      * @Route("/login", name="login")
      */
-    public function loginAction() {
+    public function loginAction(Request $request) {
         $authenticationUtils = $this->get( 'security.authentication_utils' );
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
@@ -31,9 +32,9 @@ class SecurityController extends Controller {
     /**
      * @Route("/logout", name="logout")
      */
-    public function logoutAction() {
+    public function logoutAction(Request $request) {
         $this->get( 'security.token_storage' )->setToken( null );
-        $this->get( 'request' )->getSession()->invalidate();
+        $request->getSession()->invalidate();
 
         return new RedirectResponse($this->generateUrl('homepage'));
     }

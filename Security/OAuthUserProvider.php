@@ -1,7 +1,7 @@
 <?php
 namespace AmpUserBundle\Security;
 
-use AmpUserBundle\Entity\User;
+use AppBundle\Entity\User;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthAwareUserProviderInterface;
 use Symfony\Component\HttpFoundation\Session\Session;

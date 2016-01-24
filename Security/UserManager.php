@@ -1,7 +1,7 @@
 <?php
 namespace AmpUserBundle\Security;
 
-use AmpUserBundle\Entity\User;
+use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Encoder\EncoderFactory;
@@ -25,7 +25,7 @@ class UserManager {
     public static $userRolesNice = [
         'ROLE_ADMIN' => 'Admin',
         'ROLE_OAUTH_USER' => 'Social media user',
-        'ROLE_TESTER' => 'Jira tester',
+        'ROLE_TESTER' => 'Tester',
         'ROLE_USER' => 'User'
     ];
 
@@ -51,7 +51,7 @@ class UserManager {
     }
 
     public function loadUser( $username, $key = 'username' ) {
-        $user = $this->em->getRepository( 'AmpUserBundle:User' )->findOneBy( [ $key => $username ] );
+        $user = $this->em->getRepository( 'AppBundle:User' )->findOneBy( [ $key => $username ] );
         return $user;
     }
 

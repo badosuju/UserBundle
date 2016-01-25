@@ -20,7 +20,6 @@
   "require": {
     "php": ">=5.5.0",
     "hwi/oauth-bundle": "^0.4.0",
-    "symfony/symfony": "~2.8.0",
     "nomaya/social-bundle": "dev-master"
 
   },

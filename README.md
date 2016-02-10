@@ -1,6 +1,9 @@
 Ampisoft User Bundle
 ===================================
 
+[![Build Status](https://secure.travis-ci.org/Ampisoft/UserBundle.png?branch=master)](http://travis-ci.org/Ampisoft/UserBundle) 
+
+>code coverage of tests is nothing at the moment. Please bear with...
 
 Provides a clean and simple solution for those with low-end user bundle needs.
 

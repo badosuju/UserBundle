@@ -1,0 +1,12 @@
+services:
+    amp_user.form_login_authenticator:
+        class: Ampisoft\UserBundle\Security\FormLoginAuthenticator
+        arguments: [ "@router", "@security.user_password_encoder.generic"]
+
+    amp_user.api_token_authenticator:
+        class: Ampisoft\UserBundle\Security\ApiTokenAuthenticator
+        arguments: [ "@doctrine.orm.entity_manager", %ampisoft_userbundle.class.user% ]
+
+    amp_user.manager:
+        class: Ampisoft\UserBundle\Services\AmpUserManager
+        arguments: [ "@doctrine.orm.entity_manager", "@security.user_password_encoder.generic", %ampisoft_userbundle.class.user% ]

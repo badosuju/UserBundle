@@ -1,0 +1,42 @@
+{
+  "name": "ampisoft/user-bundle",
+  "type": "library",
+  "description": "Simple solution to provide form and api authentication",
+  "keywords": [
+    "authentication",
+    "api",
+    "user management"
+  ],
+  "homepage": "http://www.ampisoft.com/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Matt Holbrook-Bull",
+      "email": "matt@ampisoft.com",
+      "homepage": "https://github.com/ampisoft/UserBundle"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.0",
+    "symfony/framework-bundle": "~2.6|~3.0",
+    "symfony/twig-bundle": "~2.6|~3.0",
+    "symfony/form": "~2.6|~3.0",
+    "symfony/console": "~2.6|~3.0",
+    "symfony/finder": "~2.6|~3.0",
+    "twig/twig": "~1.12|~2.0@dev"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.0"
+  },
+  "autoload": {
+    "psr-0": {
+      "Ampisoft\\UserBundle": ""
+    }
+  },
+  "target-dir": "Ampisoft/UserBundle",
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  }
+}

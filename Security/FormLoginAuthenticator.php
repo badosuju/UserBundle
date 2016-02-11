@@ -58,14 +58,14 @@ class FormLoginAuthenticator extends AbstractFormLoginAuthenticator {
         if ( $request->getPathInfo() != '/login_check' ) {
             return;
         }
-        $username = $request->request->get( '_username' );
+        $data = $request->request->get( 'login' );
+
         $request->getSession()
-                ->set( Security::LAST_USERNAME, $username );
-        $password = $request->request->get( '_password' );
+                ->set( Security::LAST_USERNAME, $data['_username'] );
 
         return [
-            'username' => $username,
-            'password' => $password,
+            'username' => $data['_username'],
+            'password' => $data['_password'],
         ];
     }
 
@@ -90,4 +90,5 @@ class FormLoginAuthenticator extends AbstractFormLoginAuthenticator {
 
         return true;
     }
+
 }

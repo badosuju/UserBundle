@@ -147,3 +147,17 @@ ampisoft_userbundle:
     templates:
         login: 'AmpisoftUserbundle:security:login.html.twig'
 ```
+
+##Creating your first user
+
+Simply run this command from terminal:
+
+```bash
+$ bin/console amp:user:create
+```
+
+This will create an admin user as follows:
+
+| Username | Password | Roles |
+|:--|:--|:--
+| admin | password | ROLE_SUPER_ADMIN |

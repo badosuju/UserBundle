@@ -94,6 +94,8 @@ class Group extends AbstractGroup {
 
 #Configuration
 
+>For API authentication specifics, please see the seperate [setup](Docs/APIusage.md) document.
+
 ###Security.yml
 
 ```yml

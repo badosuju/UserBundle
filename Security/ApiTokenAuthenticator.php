@@ -43,7 +43,7 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator {
      * @inheritDoc
      */
     public function getCredentials( Request $request ) {
-        return $request->request->get('X-TOKEN');
+        return $request->headers->get('x-token');
     }
 
     /**
@@ -64,8 +64,8 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator {
      * @inheritDoc
      */
     public function checkCredentials( $credentials, UserInterface $user ) {
-        // no need to run as the token matched.
-        return;
+
+        return true;
     }
 
     /**
@@ -74,7 +74,7 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator {
     public function onAuthenticationFailure( Request $request, AuthenticationException $exception ) {
         return new JsonResponse([
             'message' => $exception->getMessageKey(),
-                    ], 403);
+                    ], 401);
     }
 
     /**
@@ -95,8 +95,10 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator {
      * @inheritDoc
      */
     public function start( Request $request, AuthenticationException $authException = null ) {
+        $data = $request->headers->all();
         return new JsonResponse([
-            'message' => 'Authentication required (X-TOKEN header)'
+            'message' => 'Authentication header required (X-TOKEN header)',
+            'headers' => $data
                                 ], 401 );
     }
     

@@ -2,6 +2,7 @@
 namespace Ampisoft\UserBundle\Security;
 
 
+use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,7 +34,7 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator {
     /**
      * ApiTokenAuthenticator constructor.
      */
-    public function __construct(EntityManager $em, $userClass) {
+    public function __construct(ObjectManager $em, $userClass) {
         $this->em = $em;
         $this->userClass = $userClass;
     }
@@ -99,7 +100,7 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator {
         return new JsonResponse([
             'message' => 'Authentication header required (X-TOKEN header)',
             'headers' => $data
-                                ], 401 );
+        ], 401 );
     }
     
 }

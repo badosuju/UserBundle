@@ -28,7 +28,6 @@
       "Ampisoft\\UserBundle": ""
     }
   },
-  "target-dir": "Ampisoft/UserBundle",
   "extra": {
     "branch-alias": {
       "dev-master": "1.0-dev"

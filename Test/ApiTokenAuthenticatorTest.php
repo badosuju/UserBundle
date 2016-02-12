@@ -8,7 +8,6 @@ namespace Ampisoft\UserBundle\Test;
 
 use Ampisoft\UserBundle\Security\ApiTokenAuthenticator;
 use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\HttpFoundation\JsonResponse;

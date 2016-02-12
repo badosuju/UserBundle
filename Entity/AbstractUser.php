@@ -33,12 +33,12 @@ abstract class AbstractUser implements UserInterface, \Serializable {
     protected $email;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $firstname;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $lastname;
 

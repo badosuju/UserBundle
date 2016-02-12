@@ -46,15 +46,13 @@ class AmpUserManager {
              ->setLastname( 'Admin' )
              ->setRoles( $roles )
              ->setEmail( 'admin@bigjobs.com' )
-             ->setPlainPassword( $password )
-             ->addSchool( $this->em->getRepository( 'AppBundle:School' )
-                                   ->findOneBy( [ 'active' => true ] ) );
+             ->setPlainPassword( $password );
         $this->updateUser( $user );
         $this->em->persist( $user );
         try {
             $this->em->flush();
         } catch( \Doctrine\DBAL\DBALException $e) {
-            die('oops, an error occurred. Admin already exists?' . PHP_EOL);
+            die('oops, an error occurred. User already exists?' . PHP_EOL);
         }
     }
 

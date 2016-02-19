@@ -63,8 +63,17 @@ abstract class AbstractGroup implements \Serializable{
         return $this->roles;
     }
 
+    /**
+     * @param string|array $role
+     * @return $this
+     */
     public function addRole( $role ) {
-        $this->roles[] = strtoupper( $role );
+        if(!is_array($role)) {
+            $role = (array)$role;
+        }
+        foreach ( $role as $r ) {
+            $this->roles[] = strtoupper( $r );
+        }
 
         return $this;
     }

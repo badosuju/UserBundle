@@ -186,6 +186,20 @@ abstract class AbstractUser implements UserInterface, \Serializable {
         return $this;
     }
 
+    public function getGroups() {
+        return $this->groups;
+    }
+
+    public function addGroup(AbstractGroup $group) {
+        $this->groups->add($group);
+
+        return $this;
+    }
+
+    public function removeGroup(AbstractGroup $group) {
+        $this->groups->remove($group);
+    }
+
     /**
      * @inheritDoc
      */
@@ -193,7 +207,7 @@ abstract class AbstractUser implements UserInterface, \Serializable {
         if($this->groups) {
             $roles = [];
             foreach ( $this->groups as $group ) {
-                $roles = array_merge($roles, $group->getGroups());
+                $roles = array_merge($roles, $group->getRoles());
             }
             return array_unique($roles);
         }

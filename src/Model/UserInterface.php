@@ -1,7 +1,7 @@
 <?php
 namespace Ampisoft\UserBundle\src\Model;
 
-use Symfony\Component\Security\Core\User\AdvancedUserInterface as BaseUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface as BaseUserInterface;
 
 /**
  * @author Matt Holbrook-Bull <matt@ampisoft.com>

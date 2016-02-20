@@ -13,7 +13,7 @@ use Ampisoft\UserBundle\src\Model\UserInterface;
  * Class User
  * @package Ampisoft\UserBundle\Entity
  */
-abstract class AbstractUser implements UserInterface, \Serializable {
+abstract class AbstractUser implements UserInterface {
 
     /**
      * @ORM\Id
@@ -265,18 +265,12 @@ abstract class AbstractUser implements UserInterface, \Serializable {
         return $this;
     }
 
-    /**
-     * @see \Serializable::serialize()
-     * @return mixed
-     */
-    abstract public function serialize();
-
-    /**
-     * @see \Serializable::unserialize()
-     * @param string $serialized
-     * @return mixed
-     */
-    abstract public function unserialize( $serialized );
-
-    abstract public function toArray();
+    public function toArray() {
+        return [
+            'id'        => $this->id,
+            'username'  => $this->username,
+            'firstname' => $this->firstname,
+            'lastname'  => $this->lastname
+        ];
+    }
 }

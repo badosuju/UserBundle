@@ -10,3 +10,7 @@ services:
     amp_user.manager:
         class: Ampisoft\UserBundle\Services\AmpUserManager
         arguments: [ "@doctrine.orm.entity_manager", "@security.user_password_encoder.generic", %ampisoft_userbundle.class.user%, %ampisoft_userbundle.class.group% ]
+
+    amp_security.form_manager:
+        class: Ampisoft\UserBundle\Services\FormManager
+        arguments: [ "@form.factory" ]

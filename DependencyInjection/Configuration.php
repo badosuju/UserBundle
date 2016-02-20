@@ -42,6 +42,14 @@ class Configuration implements ConfigurationInterface{
                             ->end()
                          ->end()
                     ->end()
+                    ->arrayNode( 'paths' )
+                        ->addDefaultsIfNotSet()
+                            ->children()
+                                ->scalarNode( 'login' )
+                                ->defaultValue( 'security_login' )
+                            ->end()
+                        ->end()
+                    ->end()
                   ->end();
 
         return $treeBuilder;

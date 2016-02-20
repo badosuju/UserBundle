@@ -40,6 +40,11 @@ class FormManager {
         $this->router = $router;
     }
 
+    /**
+     * @param null $data
+     * @param array $options
+     * @return \Symfony\Component\Form\Form
+     */
     public function getLoginForm( $data = null, array $options = [ ] ) {
         $options[ 'last_username' ] = $this->authenticationUtils->getLastUsername();
 

@@ -1,7 +1,7 @@
 services:
     amp_user.form_login_authenticator:
         class: Ampisoft\UserBundle\Security\FormLoginAuthenticator
-        arguments: [ "@router", "@security.user_password_encoder.generic"]
+        arguments: [ "@router", "@security.user_password_encoder.generic", %ampisoft_userbundle.login_path%]
 
     amp_user.api_token_authenticator:
         class: Ampisoft\UserBundle\Security\ApiTokenAuthenticator

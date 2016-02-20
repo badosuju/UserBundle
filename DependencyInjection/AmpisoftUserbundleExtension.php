@@ -28,6 +28,8 @@ class AmpisoftUserbundleExtension extends Extension {
         $container->setParameter('ampisoft_userbundle.templates.login', $config['templates']['login']);
         $container->setParameter('ampisoft_userbundle.class.user', $config['classes']['user']);
         $container->setParameter('ampisoft_userbundle.class.group', $config['classes']['group']);
+        $container->setParameter('ampisoft_userbundle.login_path', $config['paths']['login']);
+
     }
 
     /**

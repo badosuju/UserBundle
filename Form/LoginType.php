@@ -17,27 +17,32 @@ class LoginType extends AbstractType {
 
     public function buildForm( FormBuilderInterface $builder, array $options ) {
 
-        $builder
-            ->setAction($options['action'])
-            ->add('_username', TextType::class, [
-                'label' => 'Username',
-                'data' => $options['last_username']
-            ])
-            ->add('_password', PasswordType::class, [
-                'label' => 'Password'
-            ])
-            ->add('_remember_me', CheckboxType::class, [
-                'label' => 'Remember me',
-            ])
-            ->add('submit', SubmitType::class);
+        $builder->setAction( $options[ 'action' ] )
+                ->add( '_username', TextType::class, [
+                    'label' => 'Username',
+                    'attr'  => [
+                        'placeholder' => 'Username',
+                    ],
+                    'data'  => $options[ 'last_username' ],
+                ] )
+                ->add( '_password', PasswordType::class, [
+                    'label' => 'Password',
+                    'attr'  => [
+                        'placeholder' => 'Password',
+                    ],
+                ] )
+                ->add( '_remember_me', CheckboxType::class, [
+                    'label' => 'Remember me',
+                ] )
+                ->add( 'submit', SubmitType::class );
 
     }
 
     public function configureOptions( OptionsResolver $resolver ) {
-        $resolver->setDefaults([
-            'action' => null,
-            'last_username' => null
-         ]);
+        $resolver->setDefaults( [
+                                    'action'        => null,
+                                    'last_username' => null,
+                                ] );
     }
 
 }

@@ -13,17 +13,14 @@ class SecurityController extends Controller {
      * @Route("/login", name="security_login")
      */
     public function loginAction() {
-        $helper = $this->get('security.authentication_utils');
+        $helper = $this->get( 'security.authentication_utils' );
+        $form = $this->get( 'amp_security.form_manager' )
+                     ->getLoginForm();
 
-        $form = $this->createForm(LoginType::class, null, [
-            'action' => $this->generateUrl('security_login_check'),
-            'last_username' => $helper->getLastUsername()
-        ]);
-
-        return $this->render($this->getParameter('ampisoft_userbundle.templates.login'), [
-            'form' => $form->createView(),
+        return $this->render( $this->getParameter( 'ampisoft_userbundle.templates.login' ), [
+            'form'  => $form->createView(),
             'error' => $helper->getLastAuthenticationError(),
-        ]);
+        ] );
     }
 
     /**

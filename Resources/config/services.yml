@@ -13,4 +13,4 @@ services:
 
     amp_security.form_manager:
         class: Ampisoft\UserBundle\Services\FormManager
-        arguments: [ "@form.factory" ]
+        arguments: [ "@form.factory", "@security.authentication_utils", "@router" ]

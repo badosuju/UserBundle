@@ -5,6 +5,8 @@ namespace Ampisoft\UserBundle\Services;
 
 use Ampisoft\UserBundle\Form\LoginType;
 use Symfony\Component\Form\FormFactory;
+use Symfony\Component\Routing\Router;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 
 /**
@@ -19,17 +21,32 @@ class FormManager {
      * @var FormFactory
      */
     private $formFactory;
-
+    /**
+     * @var AuthenticationUtils
+     */
+    private $authenticationUtils;
+    /**
+     * @var Router
+     */
+    private $router;
 
     /**
      * FormManager constructor.
      */
-    public function __construct(FormFactory $formFactory) {
+    public function __construct( FormFactory $formFactory, AuthenticationUtils $authenticationUtils, Router $router ) {
 
         $this->formFactory = $formFactory;
+        $this->authenticationUtils = $authenticationUtils;
+        $this->router = $router;
     }
 
-    public function getLoginForm($data = null, array $options = []) {
-        return $this->formFactory->create(LoginType::class, $data, $options);
+    public function getLoginForm( $data = null, array $options = [ ] ) {
+        $options[ 'last_username' ] = $this->authenticationUtils->getLastUsername();
+
+        if ( !array_key_exists( 'action', $options ) ) {
+            $options[ 'action' ] = $this->router->generate( 'security_login_check' );
+        }
+
+        return $this->formFactory->create( LoginType::class, $data, $options );
     }
 }

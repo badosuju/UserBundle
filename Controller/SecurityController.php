@@ -1,41 +1,39 @@
 <?php
-namespace AmpUserBundle\Controller;
+namespace Ampisoft\UserBundle\Controller;
 
 
+use Ampisoft\UserBundle\Form\LoginType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 
-/**
- * @author Matt Holbrook-Bull <matt@ampisoft.com>
- *
- * Class SecurityController
- * @package AmpUserBundle\Controller
- */
 class SecurityController extends Controller {
 
     /**
-     * @Route("/login", name="login")
+     * @Route("/login", name="security_login")
      */
-    public function loginAction(Request $request) {
-        $authenticationUtils = $this->get( 'security.authentication_utils' );
-        $error = $authenticationUtils->getLastAuthenticationError();
-        $lastUsername = $authenticationUtils->getLastUsername();
+    public function loginAction() {
+        $helper = $this->get( 'security.authentication_utils' );
+        $form = $this->get( 'amp_security.form_manager' )
+                     ->getLoginForm();
 
-        return $this->render( 'security/login.html.twig', array(
-            'last_username' => $lastUsername, 'error' => $error,
-        ) );
+        return $this->render( $this->getParameter( 'ampisoft_userbundle.templates.login' ), [
+            'form'  => $form->createView(),
+            'error' => $helper->getLastAuthenticationError(),
+        ] );
     }
 
     /**
-     * @Route("/logout", name="logout")
+     * @Route("/login_check", name="security_login_check")
      */
-    public function logoutAction(Request $request) {
-        $this->get( 'security.token_storage' )->setToken( null );
-        $request->getSession()->invalidate();
+    public function loginCheckAction() {
+        // will never run
+    }
 
-        return new RedirectResponse($this->generateUrl('homepage'));
+    /**
+     * @Route("/logout", name="security_logout")
+     */
+    public function logoutAction() {
+        // will never run
     }
 }

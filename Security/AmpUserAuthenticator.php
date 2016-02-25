@@ -1,7 +1,6 @@
 <?php
 namespace AmpUserBundle\Security;
 
-
 use GuzzleHttp\Client;
 use HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\GenericOAuth2ResourceOwner;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -16,7 +15,6 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
-
 
 /**
  * @author Matt Holbrook-Bull <matt@ampisoft.com>
@@ -73,17 +71,13 @@ class AmpUserAuthenticator extends AbstractGuardAuthenticator {
      * @return array|null
      */
     public function getCredentials( Request $request ) {
-        if( $request->getPathInfo() != '/login' || !$request->isMethod( 'POST' ) ) {
-            return null;
+        if ( $request->getPathInfo() != '/login' || !$request->isMethod( 'POST' ) ) {
+            return;
         }
 
-        $data = [
-            'username' => $request->request->get( 'username' ) ?? null,
-            'password' => $request->request->get( 'password' ) ?? null,
-            'code'     => null,
+        return [
+            'username' => $request->request->get( 'username' ) ?? null, 'password' => $request->request->get( 'password' ) ?? null, 'code' => null,
         ];
-
-        return $data;
     }
 
     /**
@@ -92,6 +86,7 @@ class AmpUserAuthenticator extends AbstractGuardAuthenticator {
      * @return \AppBundle\Entity\User|null|object
      */
     public function getUser( $credentials, UserProviderInterface $userProvider ) {
+
         if ( $user = $this->userProvider->loadUserByUsername( $credentials[ 'username' ] ) ) {
             return $user;
         }
@@ -117,10 +112,8 @@ class AmpUserAuthenticator extends AbstractGuardAuthenticator {
      * @return RedirectResponse
      */
     public function onAuthenticationFailure( Request $request, AuthenticationException $exception ) {
-        $request->getSession()
-                ->set( Security::AUTHENTICATION_ERROR, $exception );
+        $request->getSession()->set( Security::AUTHENTICATION_ERROR, $exception );
         $url = $this->router->generate( 'login' );
-
         return new RedirectResponse( $url );
     }
 
@@ -131,14 +124,10 @@ class AmpUserAuthenticator extends AbstractGuardAuthenticator {
      * @return RedirectResponse
      */
     public function onAuthenticationSuccess( Request $request, TokenInterface $token, $providerKey ) {
-        if ( !$token->getUser()
-                    ->getEnabled()
-        ) {
+        if ( !$token->getUser()->getEnabled() ) {
             throw new CustomUserMessageAuthenticationException( 'Your account is disabled, please contact admin to find out why.' );
         }
-        $route = $request->getBasePath();
         $url = $this->router->generate( 'homepage' );
-
         return new RedirectResponse( $url );
     }
 
@@ -149,7 +138,6 @@ class AmpUserAuthenticator extends AbstractGuardAuthenticator {
      */
     public function start( Request $request, AuthenticationException $authException = null ) {
         $url = $this->router->generate( 'login' );
-
         return new RedirectResponse( $url );
     }
 

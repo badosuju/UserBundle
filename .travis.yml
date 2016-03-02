@@ -1,22 +1,20 @@
 language: php
 
-php:
-    - 5.6
-    - 7.0
+sudo: false
+
+cache:
+    directories:
+        - $HOME/.composer/cache/files
 
 matrix:
-    fast_finish: true
     include:
         - php: 5.6
-          env: SYMFONY_VERSION=2.8.3
+          env: COMPOSER_FLAGS='--prefer-lowest --prefer-stable'
         - php: 7.0
-          env: SYMFONY_VERSION=2.8.3
-        - php: 7.0
-          env: SYMFONY_VERSION=3.0.3
 
 install:
     - if [ "$SYMFONY_VERSION" != "" ]; then composer require "symfony/symfony:${SYMFONY_VERSION}" --no-update; fi;
-    - composer update --prefer-source
+    - composer update --prefer-source $COMPOSER_FLAGS
 
 script: phpunit -v
 

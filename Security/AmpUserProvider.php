@@ -1,6 +1,7 @@
 <?php
 namespace Ampisoft\UserBundle\Security;
 
+use Ampisoft\UserBundle\Entity\AbstractUser;
 use AppBundle\Entity\User;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthAwareUserProviderInterface;
@@ -23,6 +24,7 @@ class AmpUserProvider implements UserProviderInterface {
 
     /** @var UserManager  */
     private $userManager;
+
     /**
      * @var TokenStorage
      */
@@ -62,24 +64,16 @@ class AmpUserProvider implements UserProviderInterface {
         return $this->loadUserByUsername( $user->getUsername() );
     }
 
+    public function updateUser( AbstractUser $user) {
+        $this->userManager->updateUser($user);
+    }
+
     /**
      * @param string $class
      * @return bool
      */
     public function supportsClass( $class ) {
         return $class === 'AppBundle\Entity\User';
-    }
-
-    /**
-     * @param $name
-     * @param $arguments
-     * @return MethodNotImplementedException
-     */
-    function __call( $name, $arguments ) {
-        if ( method_exists( $this, $name ) ) {
-            return $name( $arguments );
-        }
-        return new MethodNotImplementedException( sprintf( 'The method: %s, does not exist', $name ) );
     }
 
 }

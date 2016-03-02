@@ -36,6 +36,16 @@ abstract class AbstractUser implements UserInterface {
     protected $username;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $firstname;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $lastname;
+
+    /**
      * @ORM\Column(type="string", length=250, nullable=true)
      */
     protected $plainPassword;
@@ -90,6 +100,18 @@ abstract class AbstractUser implements UserInterface {
     protected $groups;
 
     /**
+     * @ORM\Column(type="string", length=150, nullable=true)
+     * @Assert\Url()
+     * @Assert\NotBlank()
+     */
+    protected $url = null;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $apiToken;
+
+    /**
      * User constructor.
      */
     public function __construct() {
@@ -124,17 +146,25 @@ abstract class AbstractUser implements UserInterface {
         $this->fullName = $fullName;
     }
 
-    /**
-     * @ORM\Column(type="string", length=150, nullable=true)
-     * @Assert\Url()
-     * @Assert\NotBlank()
-     */
-    protected $url = null;
+    public function getFirstname() {
+        return $this->firstname;
+    }
 
-    /**
-     * @ORM\Column(type="string")
-     */
-    protected $apiToken;
+    public function setFirstname( $firstname ) {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname() {
+        return $this->lastname;
+    }
+
+    public function setLastname( $lastname ) {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
 
     public function isGranted( $role ) {
         return in_array( $role, $this->getRoles() );

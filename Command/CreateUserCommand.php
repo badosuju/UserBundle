@@ -1,6 +1,6 @@
 <?php
 
-namespace AmpUserBundle\Command;
+namespace Ampisoft\UserBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;

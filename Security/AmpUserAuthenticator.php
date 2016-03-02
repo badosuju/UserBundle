@@ -1,5 +1,5 @@
 <?php
-namespace AmpUserBundle\Security;
+namespace Ampisoft\UserBundle\Security;
 
 use GuzzleHttp\Client;
 use HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\GenericOAuth2ResourceOwner;
@@ -20,7 +20,7 @@ use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
  * @author Matt Holbrook-Bull <matt@ampisoft.com>
  *
  * Class AmpUserAuthenticator
- * @package AmpUserBundle\Security
+ * @package Ampisoft\UserBundle\Security
  */
 class AmpUserAuthenticator extends AbstractGuardAuthenticator {
 

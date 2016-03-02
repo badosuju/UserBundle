@@ -5,9 +5,12 @@ namespace Ampisoft\UserBundle\Services;
 use Ampisoft\UserBundle\Entity\AbstractGroup;
 use Ampisoft\UserBundle\Entity\AbstractUser;
 use Ampisoft\UserBundle\src\Model\UserInterface;
-use DBALException;
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\HttpKernel\Debug\TraceableEventDispatcher;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 
 /**
@@ -28,12 +31,22 @@ class AmpUserManager {
     private $encoder;
     private $userClass;
     private $groupClass;
+    /**
+     * @var TokenStorage
+     */
+    private $tokenStorage;
+    /**
+     * @var EventDispatcher
+     */
+    private $eventDispatcher;
 
-    public function __construct( EntityManager $em, UserPasswordEncoder $encoder, $userClass, $groupClass ) {
+    public function __construct( EntityManager $em, UserPasswordEncoder $encoder, TokenStorage $tokenStorage, TraceableEventDispatcher $eventDispatcher, $userClass, $groupClass ) {
         $this->em = $em;
         $this->encoder = $encoder;
         $this->userClass = $userClass;
         $this->groupClass = $groupClass;
+        $this->tokenStorage = $tokenStorage;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     /**
@@ -70,6 +83,22 @@ class AmpUserManager {
         return $user;
     }
 
+    public function newUser($groupName = 'user') {
+        $group = $this->em->getRepository( 'AppBundle:Group' )
+                          ->findOneBy( [ 'name' => $groupName ] );
+
+        if ( null === $group ) {
+            $group = $this->createUserGroup( $groupName, ['ROLE_USER'] );
+
+        }
+
+        /** @var AbstractUser $user */
+        $user = new $this->userClass();
+        $user->addGroup($group);
+
+        return $user;
+    }
+
     /**
      * @param $groupName
      * @param array $roles
@@ -97,6 +126,7 @@ class AmpUserManager {
             $this->encodePassword( $user );
             $this->refreshApiToken( $user );
         }
+        $this->em->persist($user);
         $this->em->flush();
 
         return $user;
@@ -131,5 +161,15 @@ class AmpUserManager {
         }
 
         return $user;
+    }
+
+    /**
+     * @param UserInterface $user
+     */
+    public function loginUser(UserInterface $user) {
+        $token = new UsernamePasswordToken( $user, null, "main", $user->getRoles() );
+        $this->tokenStorage
+             ->setToken( $token );
+
     }
 }

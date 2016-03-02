@@ -187,7 +187,7 @@ abstract class AbstractUser implements UserInterface {
     }
 
     public function getGroups() {
-        return $this->groups;
+        return $this->groups->toArray();
     }
 
     public function addGroup(AbstractGroup $group) {

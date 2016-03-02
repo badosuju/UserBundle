@@ -1,5 +1,5 @@
 <?php
-namespace AmpUserBundle\Security;
+namespace Ampisoft\UserBundle\Security;
 
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManager;

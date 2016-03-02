@@ -1,5 +1,5 @@
 <?php
-namespace AmpUserBundle\Security;
+namespace Ampisoft\UserBundle\Security;
 
 use AppBundle\Entity\User;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
@@ -17,7 +17,7 @@ use Symfony\Component\Security\Guard\Token\PostAuthenticationGuardToken;
  * @author Matt Holbrook-Bull <matt@ampisoft.com>
  *
  * Class AmpUserProvider
- * @package AmpUserBundle\Security
+ * @package Ampisoft\UserBundle\Security
  */
 class AmpUserProvider implements UserProviderInterface {
 

@@ -1,5 +1,5 @@
 <?php
-namespace AmpUserBundle\Source\Traits;
+namespace Ampisoft\UserBundle\Source\Traits;
 
 use Symfony\Component\Intl\Exception\MethodNotImplementedException;
 
@@ -8,7 +8,7 @@ use Symfony\Component\Intl\Exception\MethodNotImplementedException;
  *
  * Class GetSafeTrait
  *
- * @package AmpUserBundle\Source\Traits
+ * @package Ampisoft\UserBundle\Source\Traits
  */
 trait GetSafeTrait {
 

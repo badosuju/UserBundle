@@ -3,33 +3,31 @@ parameters:
 #    parameter_name: value
 
 services:
-    #################### security ###################
-    amp_user.authenticator:
-        class: AmpUserBundle\Security\AmpUserAuthenticator
-        arguments:
-            - '@amp_user.provider'
-            - '@security.encoder_factory'
-            - '@router'
-            - '@hwi_oauth.resource_owner.facebook'
-            - %facebook_app_id%
-            - %facebook_app_secret%
+    amp_user.form_login_authenticator:
+        class: Ampisoft\UserBundle\Security\FormLoginAuthenticator
+        arguments: [ "@router", "@security.user_password_encoder.generic", %amp_userbundle.login_path%]
+
+    amp_user.api_token_authenticator:
+        class: Ampisoft\UserBundle\Security\ApiTokenAuthenticator
+        arguments: [ "@doctrine.orm.entity_manager", %amp_userbundle.class.user% ]
 
     amp_user.manager:
-        class: AmpUserBundle\Security\UserManager
+        class: Ampisoft\UserBundle\Services\AmpUserManager
         arguments:
-            - '@doctrine.orm.entity_manager'
-            - '@security.encoder_factory'
-            - '@session'
+            - "@doctrine.orm.entity_manager"
+            - "@security.user_password_encoder.generic"
+            - "@security.token_storage"
+            - "@event_dispatcher"
+            - %amp_userbundle.class.user%
+            - %amp_userbundle.class.group%
 
     amp_user.provider:
-        class: AmpUserBundle\Security\AmpUserProvider
+        class: Ampisoft\UserBundle\Security\AmpUserProvider
         arguments:
             [ '@amp_user.manager', '@security.token_storage']
         tags:
             - { name: user.provider }
 
-    amp_user.provider.oauth:
-        class: AmpUserBundle\Security\OAuthUserProvider
-        arguments: ['@amp_user.manager', '@security.token_storage' , { facebook: facebookID, google: googleID }, '@session', '@validator' ]
-        tags:
-            - { name: user.provider }
+    amp_security.form_manager:
+        class: Ampisoft\UserBundle\Services\FormManager
+        autowire: true

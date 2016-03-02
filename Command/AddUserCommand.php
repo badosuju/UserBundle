@@ -1,6 +1,6 @@
 <?php
 
-namespace AmpUserBundle\Command;
+namespace Ampisoft\UserBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
@@ -11,7 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * @author Matt Holbrook-Bull <matt@ampisoft.com>
  *
  * Class AddUserCommand
- * @package AmpUserBundle\Command
+ * @package Ampisoft\UserBundle\Command
  */
 class AddUserCommand extends ContainerAwareCommand
 {

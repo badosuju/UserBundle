@@ -1,7 +1,7 @@
 <?php
-namespace AmpUserBundle\Source;
+namespace Ampisoft\UserBundle\Source;
 
-use AmpUserBundle\Source\Traits\GetSafeTrait;
+use Ampisoft\UserBundle\Source\Traits\GetSafeTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
@@ -12,7 +12,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @author Matt Holbrook-Bull <matt@ampisoft.com>
  *
  * Class AbstractUser
- * @package AmpUserBundle\Source
+ * @package Ampisoft\UserBundle\Source
  * @UniqueEntity("email")
  * @UniqueEntity("username")
  */

@@ -4,14 +4,14 @@
  * 24/01/16
  */
 
-namespace AmpUserBundle\Tests\Security;
+namespace Ampisoft\UserBundle\Tests\Security;
 
 
 /**
  * @author Matt Holbrook-Bull <matt@ampisoft.com>
  *
  * Class UserManagerTest
- * @package AmpUserBundle\Tests\Security
+ * @package Ampisoft\UserBundle\Tests\Security
  */
 class UserManagerTest extends \PHPUnit_Framework_TestCase {
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace AmpUserBundle\Form;
+namespace Ampisoft\UserBundle\Form;
 
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -48,7 +48,7 @@ class UserForm extends AbstractType {
      */
     public function configureOptions( OptionsResolver $resolver ) {
         $resolver->setDefaults( [
-            'data_class' => 'AmpUserBundle\Entity\User'
+            'data_class' => 'Ampisoft\UserBundle\Entity\User'
         ] );
     }
 

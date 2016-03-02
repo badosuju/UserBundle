@@ -13,13 +13,13 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  * @author Matt Holbrook-Bull <matt@ampisoft.com>
  *
  * Class Configuration
- * @package Ampisoft\DeployBundle\DependencyInjection
+ * @package Ampisoft\UserBundle\DependencyInjection
  */
 class Configuration implements ConfigurationInterface{
     
     public function getConfigTreeBuilder() {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root( 'ampisoft_userbundle' );
+        $rootNode = $treeBuilder->root( 'amp_user' );
 
         $rootNode
                   ->children()
@@ -38,7 +38,7 @@ class Configuration implements ConfigurationInterface{
                         ->addDefaultsIfNotSet()
                          ->children()
                             ->scalarNode('login')
-                                ->defaultValue( 'AmpisoftUserbundle:security:login.html.twig' )
+                                ->defaultValue( 'AmpUserBundle:security:login.html.twig' )
                             ->end()
                          ->end()
                     ->end()

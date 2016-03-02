@@ -22,7 +22,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Ampisoft\\AmpUserBundle\\": ""
+      "Ampisoft\\UserBundle\\": ""
     }
   },
   "extra": {

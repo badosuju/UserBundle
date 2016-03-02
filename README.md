@@ -33,7 +33,7 @@ Register in AppKernel.php
         $bundles = array(
         
         // .....
-            new \Ampisoft\UserBundle\AmpisoftUserbundle(),
+            new Ampisoft\UserBundle\AmpUserBundle(),
         // .....
 
         );
@@ -126,7 +126,7 @@ class Group extends AbstractGroup {
 
 ```yml
 amp_user:
-    resource: "@AmpisoftUserbundle/Controller"
+    resource: "@AmpUserBundle/Controller"
     type:     annotation
 
 ```
@@ -135,19 +135,21 @@ amp_user:
 
 ```yml
 imports:
-    - { resource: '@AmpisoftUserbundle/Resources/config/services.yml' }
+    - { resource: '@AmpUserBundle/Resources/config/services.yml' }
 ```
 
 ###Config.yml 
 ***(omit to use defaults)***
 
 ```yml
-ampisoft_userbundle:
+amp_user:
     classes:
         user: AppBundle\Entity\User
         group: AppBundle\Entity\Group
     templates:
-        login: 'AmpisoftUserbundle:security:login.html.twig'
+        login: 'AmpUserBundle:security:login.html.twig'
+    paths:
+        login: 'index'    
 ```
 
 ##Creating your first user

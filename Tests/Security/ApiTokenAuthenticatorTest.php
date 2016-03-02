@@ -3,9 +3,10 @@
  * @author Matt Holbrook-Bull <matt@ampisoft.com>
  * 12/02/16
  */
-namespace Ampisoft\UserBundle\Test;
+namespace Ampisoft\UserBundle\Tests\Security;
 
 
+use Ampisoft\UserBundle\Entity\AbstractUser;
 use Ampisoft\UserBundle\Security\ApiTokenAuthenticator;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityRepository;
@@ -59,5 +60,7 @@ class ApiTokenAuthenticatorTest extends \PHPUnit_Framework_TestCase {
     }
 }
 
+class TestUser extends AbstractUser {
 
+}
 

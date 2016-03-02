@@ -4,7 +4,7 @@ namespace Ampisoft\UserBundle\Entity;
 
 use Ampisoft\UserBundle\Source\Traits\GetSafeTrait;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Ampisoft\UserBundle\Source\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;

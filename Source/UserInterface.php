@@ -1,5 +1,5 @@
 <?php
-namespace Ampisoft\UserBundle\src\Model;
+namespace Ampisoft\UserBundle\Source;
 
 use Symfony\Component\Security\Core\User\UserInterface as BaseUserInterface;
 

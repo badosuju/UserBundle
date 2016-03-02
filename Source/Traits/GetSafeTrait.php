@@ -1,7 +1,9 @@
 <?php
 namespace Ampisoft\UserBundle\Source\Traits;
 
+
 use Symfony\Component\Intl\Exception\MethodNotImplementedException;
+
 
 /**
  * @author Matt Holbrook-Bull <matt@ampisoft.com>
@@ -23,7 +25,12 @@ trait GetSafeTrait {
         }
         $method = 'get' . ucwords( str_replace( 'getSafe', '', $name ) );
         if ( method_exists( $this, $method ) ) {
-            return htmlspecialchars( $this->$method );
+            $returnString = $this->$method;
+            if ( is_string( $returnString ) ) {
+                return htmlspecialchars( $returnString );
+            }
+
+            return null;
         } else {
             throw new MethodNotImplementedException( "'Error: method '$method' does not exist!" );
         }

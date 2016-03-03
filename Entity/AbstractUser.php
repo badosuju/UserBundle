@@ -17,6 +17,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @package Ampisoft\UserBundle\Source
  * @UniqueEntity("email")
  * @UniqueEntity("username")
+ * @ORM\MappedSuperclass()
  */
 abstract class AbstractUser implements UserInterface {
 

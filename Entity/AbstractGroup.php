@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * Class Group
  * @package Ampisoft\UserBundle\Entity
+ * @ORM\MappedSuperclass()
  */
 abstract class AbstractGroup implements \Serializable{
 

@@ -129,6 +129,8 @@ abstract class AbstractUser implements UserInterface {
         }
 
         $this->username = $username;
+
+        return $this;
     }
 
     /**
@@ -145,6 +147,8 @@ abstract class AbstractUser implements UserInterface {
 
     public function setFullName( $fullName ) {
         $this->fullName = $fullName;
+
+        return $this;
     }
 
     public function getFirstname() {
@@ -177,6 +181,8 @@ abstract class AbstractUser implements UserInterface {
 
     public function setUrl( $url ) {
         $this->url = $url;
+
+        return $this;
     }
 
     public function getGuest() {
@@ -185,6 +191,8 @@ abstract class AbstractUser implements UserInterface {
 
     public function setGuest( $guest ) {
         $this->guest = $guest;
+
+        return $this;
     }
 
     /**
@@ -202,12 +210,16 @@ abstract class AbstractUser implements UserInterface {
 
     public function addRole( $role ) {
         $this->roles[] = $role;
+
+        return $this;
     }
 
     public function setRoles( array $roles ) {
         foreach ( $roles as $role ) {
             $this->addRole( $role );
         }
+
+        return $this;
     }
 
     public function hasRole( $role ) {
@@ -311,6 +323,8 @@ abstract class AbstractUser implements UserInterface {
 
     public function setApiToken( $apiToken ) {
         $this->apiToken = $apiToken;
+
+        return $this;
     }
 
     /**
@@ -333,6 +347,8 @@ abstract class AbstractUser implements UserInterface {
      */
     public function addGroup( AbstractGroup $group ) {
         $this->groups->add( $group );
+
+        return $this;
     }
 
     /**

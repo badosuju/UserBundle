@@ -55,12 +55,12 @@ class AmpUserManager {
      * @param array $roles
      * @return AbstractUser
      */
-    public function createUser( $username = 'admin', $password = 'password', array $roles = [ 'ROLE_SUPER_ADMIN' ] ) {
+    public function createUser( $username, $password, $email, $groupName = 'test', array $roles = [ 'ROLE_ADMIN' ] ) {
         $group = $this->em->getRepository( 'AppBundle:Group' )
-                          ->findOneBy( [ 'name' => 'admin' ] );
+                          ->findOneBy( [ 'name' => $groupName ] );
 
         if(null === $group) {
-            $group = $this->createUserGroup( 'admin', $roles );
+            $group = $this->createUserGroup( $groupName, $roles );
         }
         /** @var AbstractUser $user */
         $user = new $this->userClass();
@@ -68,7 +68,7 @@ class AmpUserManager {
              ->setEnabled( true )
              ->setFirstname( 'An' )
              ->setLastname( 'Admin' )
-             ->setEmail( 'admin@bigjobs.com' )
+             ->setEmail( $email )
              ->addGroup( $group )
              ->setPlainPassword( $password );
         $this->updateUser( $user );

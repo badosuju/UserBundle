@@ -23,7 +23,7 @@ class SecurityController extends Controller {
         $form = $this->get( 'amp_security.form_manager' )
                      ->getLoginForm();
 
-        return $this->render( $this->getParameter( 'ampisoft_userbundle.templates.login' ), [
+        return $this->render( $this->getParameter( 'amp_userbundle.templates.login' ), [
             'form'  => $form->createView(),
             'error' => $helper->getLastAuthenticationError(),
         ] );

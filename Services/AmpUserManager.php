@@ -137,7 +137,7 @@ class AmpUserManager {
      * @param bool $flush
      * @return UserInterface
      */
-    private function encodePassword( UserInterface $user, $flush = false ) {
+    private function encodePassword( AbstractUser $user, $flush = false ) {
         $plainPassword = $user->getPlainPassword();
         $user->setSalt( uniqid( mt_rand(), true ) );
         $user->setPassword( $this->encoder->encodePassword( $user, $plainPassword ) )
@@ -154,7 +154,7 @@ class AmpUserManager {
      * @param bool $flush
      * @return UserInterface
      */
-    public function refreshApiToken( UserInterface $user, $flush = false ) {
+    public function refreshApiToken( AbstractUser $user, $flush = false ) {
         $user->setApiToken( uniqid( mt_rand(), true ) );
         if ( $flush ) {
             $this->em->flush();
@@ -166,7 +166,7 @@ class AmpUserManager {
     /**
      * @param UserInterface $user
      */
-    public function loginUser(UserInterface $user) {
+    public function loginUser(AbstractUser $user) {
         $token = new UsernamePasswordToken( $user, null, "main", $user->getRoles() );
         $this->tokenStorage
              ->setToken( $token );

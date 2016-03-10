@@ -55,29 +55,39 @@ class AmpUserManager {
      * @param array $roles
      * @return AbstractUser
      */
-    public function createUser( $username, $password, $email, $groupName = 'test', array $roles = [ 'ROLE_ADMIN' ] ) {
-        $group = $this->em->getRepository( 'AppBundle:Group' )
-                          ->findOneBy( [ 'name' => $groupName ] );
+    public function createUser( $username, $password, $email, $groupName = null, array $roles = [ 'ROLE_ADMIN' ] ) {
+        if($groupName) {
+            $group = $this->em->getRepository( 'AppBundle:Group' )
+                              ->findOneBy( [ 'name' => $groupName ] );
 
-        if(null === $group) {
-            $group = $this->createUserGroup( $groupName, $roles );
+            if ( null === $group ) {
+                $group = $this->createUserGroup( $groupName, $roles );
+            }
         }
+
         /** @var AbstractUser $user */
         $user = new $this->userClass();
         $user->setUsername( $username )
              ->setEnabled( true )
              ->setFirstname( 'An' )
              ->setLastname( 'Admin' )
-             ->setEmail( $email )
-             ->addGroup( $group )
-             ->setPlainPassword( $password );
+             ->setEmail( $email );
+
+        if(isset($group)) {
+            $user->addGroup( $group );
+        } else {
+            $user->setRoles($roles);
+        }
+
+        $user->setPlainPassword( $password );
         $this->updateUser( $user );
         $this->em->persist( $user );
+
         try {
             $this->em->flush();
         }
         catch ( \Doctrine\DBAL\DBALException $e ) {
-            die( 'oops, an error occurred. User already exists?' . PHP_EOL );
+            die( 'Oops, an error occurred. User already exists?' . PHP_EOL );
         }
 
         return $user;

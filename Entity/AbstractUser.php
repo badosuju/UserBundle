@@ -103,7 +103,6 @@ abstract class AbstractUser implements UserInterface {
     /**
      * @ORM\Column(type="string", length=150, nullable=true)
      * @Assert\Url()
-     * @Assert\NotBlank()
      */
     protected $url = null;
 

@@ -98,7 +98,7 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator {
     public function start( Request $request, AuthenticationException $authException = null ) {
         $data = $request->headers->all();
         return new JsonResponse([
-            'message' => 'Authentication header required (X-TOKEN header)',
+            'message' => 'Authentication header required (X-TOKEN)',
             'headers' => $data
         ], 401 );
     }

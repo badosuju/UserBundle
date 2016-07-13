@@ -6,6 +6,8 @@ Ampisoft User Bundle
 
 Provides a clean and simple solution for those with low-end user bundle needs.
 
+Test
+
 ##Features
 
 - Form based authentication

@@ -78,7 +78,7 @@ abstract class AbstractUser implements UserInterface {
     protected $roles = [ ];
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     protected $enabled = true;
 

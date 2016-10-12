@@ -37,9 +37,9 @@ services:
         autowire: true
 
     amp.token_manager:
-        class: Services\TokenManager
-        arguments: [ @session, @security.token_storage, @security.authorization_checker ]
+        class: Ampisoft\UserBundle\Services\TokenManager
+        arguments: [ "@session", "@security.token_storage", "@security.authorization_checker" ]
 
     amp.token_manager_helper:
-        class: Services\TokenManagerHelper
+        class: Ampisoft\UserBundle\Services\TokenManagerHelper
         arguments: [ "@amp.token_manager" ]

@@ -5,7 +5,7 @@
  * Date: 12/10/16
  * Time: 21:30
  */
-namespace Services;
+namespace Ampisoft\UserBundle\Services;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;

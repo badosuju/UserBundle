@@ -5,7 +5,8 @@
  * Date: 12/10/16
  * Time: 21:31
  */
-namespace Services;
+
+namespace Ampisoft\UserBundle\Services;
 
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;

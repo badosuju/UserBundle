@@ -6,6 +6,7 @@ use Ampisoft\UserBundle\Entity\AbstractGroup;
 use Ampisoft\UserBundle\Entity\AbstractUser;
 use Ampisoft\UserBundle\src\Model\UserInterface;
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\HttpKernel\Debug\TraceableEventDispatcher;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;

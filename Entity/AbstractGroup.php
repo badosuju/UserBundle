@@ -37,7 +37,7 @@ abstract class AbstractGroup implements \Serializable{
     /**
      * @ORM\Column(type="boolean")
      */
-    protected $isActive = true;
+    protected $active = true;
 
     /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", mappedBy="groups")
@@ -103,11 +103,11 @@ abstract class AbstractGroup implements \Serializable{
     }
 
     public function isActive() {
-        return $this->isActive;
+        return $this->active;
     }
 
-    public function setIsActive( $isActive ) {
-        $this->isActive = $isActive;
+    public function setIsActive( $active ) {
+        $this->active = $active;
 
         return $this;
     }

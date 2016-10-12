@@ -111,7 +111,12 @@ abstract class AbstractGroup implements \Serializable{
 
         return $this;
     }
-
+    
+    public function __toString()
+    {
+        return (string)$this->name;
+    }
+    
     /**
      * @inheritDoc
      */

@@ -35,3 +35,11 @@ services:
     amp_security.form_manager:
         class: Ampisoft\UserBundle\Services\FormManager
         autowire: true
+
+    amp.token_manager:
+        class: Services\TokenManager
+        arguments: [ @session, @security.token_storage, @security.authorization_checker ]
+
+    amp.token_manager_helper:
+        class: Services\TokenManagerHelper
+        arguments: [ "@amp.token_manager" ]

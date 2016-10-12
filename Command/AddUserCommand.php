@@ -40,7 +40,7 @@ class AddUserCommand extends ContainerAwareCommand
 
         $userManager = $this->getContainer()->get('amp_user.manager');
 
-        $user = $userManager->createUser($username, $plainPassword, $email, ['ROLE_ADMIN']);
+        $user = $userManager->createUser($username, $plainPassword, $email, 'ROLE_ADMIN');
 
         $output->writeln(sprintf('User: %s created', $user->getUsername()));
 

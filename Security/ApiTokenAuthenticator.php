@@ -52,9 +52,12 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator {
      */
     public function getUser( $credentials, UserProviderInterface $userProvider ) {
         $user = $this->em->getRepository($this->userClass)
-            ->findOneBy(['apiToken' => $credentials]);
+            ->findOneBy(['api_token' => $credentials]);
 
         if(!$user) {
+
+
+
             throw new AuthenticationCredentialsNotFoundException();
         }
 

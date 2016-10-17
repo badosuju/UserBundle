@@ -41,7 +41,7 @@ class AmpUserManager {
      */
     private $eventDispatcher;
 
-    public function __construct( EntityManager $em, UserPasswordEncoder $encoder, TokenStorage $tokenStorage, TraceableEventDispatcher $eventDispatcher, $userClass, $groupClass ) {
+    public function __construct( EntityManager $em, UserPasswordEncoder $encoder, TokenStorage $tokenStorage, $eventDispatcher, $userClass, $groupClass ) {
         $this->em = $em;
         $this->encoder = $encoder;
         $this->userClass = $userClass;

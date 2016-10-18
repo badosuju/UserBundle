@@ -72,6 +72,7 @@ class User extends BaseUser  {
 }
 
 ```
+you need to be extending the mapped superclasses
 
 ```php
 use Ampisoft\UserBundle\Entity\AbstractGroup;
@@ -153,17 +154,19 @@ amp_user:
     paths:
         login: 'index'    
 ```
+- templates: use this to override the login template
+- paths > login: this is the route name that will be used to redirect the user in the event of failed login, or unauthorised access
 
 ##Creating your first user
 
 Simply run this command from terminal:
 
 ```bash
-$ bin/console amp:user:create
+$ bin/console amp:user:create username password email
 ```
 
 This will create an admin user as follows:
 
 | Username | Password | Roles |
 |:--|:--|:--
-| admin | password | ROLE_SUPER_ADMIN |
+| username | password | ROLE_SUPER_ADMIN |

@@ -5,6 +5,7 @@ namespace Ampisoft\UserBundle\Controller;
 use Ampisoft\UserBundle\Form\LoginType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 
 /**
@@ -23,10 +24,7 @@ class SecurityController extends Controller {
         $form = $this->get( 'amp_security.form_manager' )
                      ->getLoginForm();
 
-        return $this->render( $this->getParameter( 'amp_userbundle.templates.login' ), [
-            'form'  => $form->createView(),
-            'error' => $helper->getLastAuthenticationError(),
-        ] );
+        return new RedirectResponse($this->generateUrl($this->getParameter('amp_userbundle.login_path')));
     }
 
     /**

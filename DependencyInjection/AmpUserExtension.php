@@ -29,6 +29,7 @@ class AmpUserExtension extends Extension {
         $container->setParameter('amp_userbundle.class.user', $config['classes']['user']);
         $container->setParameter('amp_userbundle.class.group', $config['classes']['group']);
         $container->setParameter('amp_userbundle.login_path', $config['paths']['login']);
+        $container->setParameter('amp_userbundle.success_path', $config['paths']['success']);
 
     }
 

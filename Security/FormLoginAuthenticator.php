@@ -43,7 +43,7 @@ class FormLoginAuthenticator extends AbstractGuardAuthenticator {
      */
     private $userManager;
 
-    public function __construct( Router $router, UserPasswordEncoder $userPasswordEncoder, $loginPath, AmpUserManager $userManager ) {
+    public function __construct( Router $router, UserPasswordEncoder $userPasswordEncoder, $loginPath, AmpUserManager $userManager, $successPath ) {
         $this->router = $router;
         $this->userPasswordEncoder = $userPasswordEncoder;
         $this->loginPath = $loginPath;
@@ -100,6 +100,8 @@ class FormLoginAuthenticator extends AbstractGuardAuthenticator {
         $user = $token->getUser();
         $user->setLastLoggedIn( new \DateTime() );
         $this->userManager->updateUser( $user );
+        
+        return new RedirectResponse($this->router->generate('homepage'));
     }
 
 

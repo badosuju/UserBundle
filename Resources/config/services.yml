@@ -8,8 +8,9 @@ services:
         arguments:
             - "@router"
             - "@security.user_password_encoder.generic"
-            - %amp_userbundle.login_path%
+            - "%amp_userbundle.login_path%"
             - "@amp_user.manager"
+            - "%amp_userbundle.success_path%"
 
     amp_user.api_token_authenticator:
         class: Ampisoft\UserBundle\Security\ApiTokenAuthenticator

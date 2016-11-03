@@ -44,3 +44,9 @@ services:
     amp.token_manager_helper:
         class: Ampisoft\UserBundle\Services\TokenManagerHelper
         arguments: [ "@amp.token_manager" ]
+
+    amp_user.provider.oauth:
+        class: Ampisoft\UserBundle\Security\OAuthUserProvider
+        arguments: ['@amp_user.manager', '@security.token_storage' , { facebook: facebookID, google: googleID }, '@session', '@validator' ]
+        tags:
+            - { name: user.provider }

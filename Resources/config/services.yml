@@ -11,6 +11,8 @@ services:
             - "%amp_userbundle.login_path%"
             - "@amp_user.manager"
             - "%amp_userbundle.success_path%"
+            - "@session"
+            - "@translator.default"
 
     amp_user.api_token_authenticator:
         class: Ampisoft\UserBundle\Security\ApiTokenAuthenticator

@@ -52,7 +52,7 @@ abstract class AbstractUser implements UserInterface {
     protected $plainPassword;
 
     /**
-     * @ORM\Column(type="string", length=50, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     protected $password;
 

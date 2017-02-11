@@ -3,9 +3,11 @@ namespace Ampisoft\UserBundle\Security;
 
 
 use Ampisoft\UserBundle\Services\AmpUserManager;
+use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Router;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
@@ -42,12 +44,30 @@ class FormLoginAuthenticator extends AbstractGuardAuthenticator {
      * @var AmpUserManager
      */
     private $userManager;
+    
+    /**
+     * @var Session
+     */
+    private $session;
+    
+    /** @var  Translator */
+    private $translator;
 
-    public function __construct( Router $router, UserPasswordEncoder $userPasswordEncoder, $loginPath, AmpUserManager $userManager, $successPath ) {
+    public function __construct(
+        Router $router,
+        UserPasswordEncoder $userPasswordEncoder,
+        $loginPath,
+        AmpUserManager $userManager,
+        $successPath,
+        Session $session,
+        Translator $translator
+    ) {
         $this->router = $router;
         $this->userPasswordEncoder = $userPasswordEncoder;
         $this->loginPath = $loginPath;
         $this->userManager = $userManager;
+        $this->session = $session;
+        $this->translator = $translator;
     }
 
     /**
@@ -65,7 +85,9 @@ class FormLoginAuthenticator extends AbstractGuardAuthenticator {
     }
 
     public function onAuthenticationFailure( Request $request, AuthenticationException $exception ) {
-        return parent::onAuthenticationFailure( $request, $exception );
+        $this->session->getFlashBag()->add('error', $this->translator->trans('bad credentials'));
+        
+        return new RedirectResponse($this->router->generate($this->loginPath));
     }
 
 

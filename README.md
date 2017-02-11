@@ -1,4 +1,5 @@
 Ampisoft User Bundle
+Ampisoft User Bundle
 ===================================
 | Branch | Status |
 |:---|:-----------|
@@ -107,7 +108,11 @@ class Group extends AbstractGroup {
             entity:
                 class: AppBundle:User
                 property: username
-
+    encoders:
+        AppBundle\Entity\User:
+            algorithm: bcrypt
+            cost: 12
+    
     firewalls:
         api:
             pattern: ^/api

@@ -1,0 +1,33 @@
+{
+  "name": "ampisoft/userbundle",
+  "type": "library",
+  "description": "An intuitive and usable user bundle",
+  "keywords": [
+    "framework",
+    "user",
+    "authentication"
+
+  ],
+  "homepage": "http://www.ampisoft.com/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Matt Holbrook-Bull",
+      "email": "matt@ampisoft.com",
+      "homepage": "https://github.com/Ampisoft/UserBundle"
+    }
+  ],
+  "require": {
+    "symfony/symfony": "~2.8|~3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Ampisoft\\UserBundle\\": ""
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "2.0-dev"
+    }
+  }
+}

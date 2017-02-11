@@ -1,0 +1,46 @@
+
+parameters:
+#    parameter_name: value
+
+services:
+    amp_user.form_login_authenticator:
+        class: Ampisoft\UserBundle\Security\FormLoginAuthenticator
+        arguments:
+            - "@router"
+            - "@security.user_password_encoder.generic"
+            - "%amp_userbundle.login_path%"
+            - "@amp_user.manager"
+            - "%amp_userbundle.success_path%"
+
+    amp_user.api_token_authenticator:
+        class: Ampisoft\UserBundle\Security\ApiTokenAuthenticator
+        arguments: [ "@doctrine.orm.entity_manager", %amp_userbundle.class.user% ]
+
+    amp_user.manager:
+        class: Ampisoft\UserBundle\Services\AmpUserManager
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@security.user_password_encoder.generic"
+            - "@security.token_storage"
+            - "@event_dispatcher"
+            - %amp_userbundle.class.user%
+            - %amp_userbundle.class.group%
+
+    amp_user.provider:
+        class: Ampisoft\UserBundle\Security\AmpUserProvider
+        arguments:
+            [ '@amp_user.manager', '@security.token_storage']
+        tags:
+            - { name: user.provider }
+
+    amp_security.form_manager:
+        class: Ampisoft\UserBundle\Services\FormManager
+        autowire: true
+
+    amp.token_manager:
+        class: Ampisoft\UserBundle\Services\TokenManager
+        arguments: [ "@session", "@security.token_storage", "@security.authorization_checker" ]
+
+    amp.token_manager_helper:
+        class: Ampisoft\UserBundle\Services\TokenManagerHelper
+        arguments: [ "@amp.token_manager" ]

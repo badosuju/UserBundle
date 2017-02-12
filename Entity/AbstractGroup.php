@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @package Ampisoft\UserBundle\Entity
  * @ORM\MappedSuperclass()
  */
-abstract class AbstractGroup implements \Serializable{
+abstract class AbstractGroup {
 
     use GetSafeTrait;
     /**
@@ -47,7 +47,12 @@ abstract class AbstractGroup implements \Serializable{
     public function __construct() {
         $this->users = new ArrayCollection();
     }
-
+    
+    public function setId( $id )
+    {
+        $this->id = $id;
+    }
+    
     public function getId() {
         return $this->id;
     }
@@ -117,15 +122,6 @@ abstract class AbstractGroup implements \Serializable{
         return (string)$this->name;
     }
     
-    /**
-     * @inheritDoc
-     */
-    abstract public function serialize();
-
-    /**
-     * @inheritDoc
-     */
-    abstract public function unserialize( $serialized );
 
     
 }

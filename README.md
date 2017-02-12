@@ -26,7 +26,7 @@ Test
 
 Using composer:
 ```bash
-$ composer.phar require ampisoft/user-bundle
+$ composer require ampisoft/user-bundle:1.0.3
 ```
 
 Register in AppKernel.php

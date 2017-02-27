@@ -5,6 +5,9 @@ Ampisoft User Bundle
 |:---|:-----------|
 | Master | [![Build Status](https://secure.travis-ci.org/Ampisoft/UserBundle.png?branch=master)](http://travis-ci.org/Ampisoft/UserBundle) |
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/008fcf8d-00fd-4e88-92d0-b498028fda13/big.png)](https://insight.sensiolabs.com/projects/008fcf8d-00fd-4e88-92d0-b498028fda13)
+
+
 Provides a clean and simple solution for those with low-end user bundle needs.
 
 Test

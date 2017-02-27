@@ -2,7 +2,6 @@
 
 namespace Ampisoft\UserBundle\Form\Type;
 
-use Ampisoft\UserBundle\Services\AmpUserManager;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;

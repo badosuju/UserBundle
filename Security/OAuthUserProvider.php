@@ -7,8 +7,8 @@
 
 namespace Ampisoft\UserBundle\Security;
 
+use Ampisoft\UserBundle\Entity\AbstractUser;
 use Ampisoft\UserBundle\Services\AmpUserManager;
-use AppBundle\Entity\User;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthAwareUserProviderInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -20,7 +20,6 @@ use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Validator\Validator;
-use Symfony\Component\Validator\Validator\RecursiveValidator;
 
 
 /**
@@ -33,7 +32,7 @@ class OAuthUserProvider implements OAuthAwareUserProviderInterface, UserProvider
 {
     
     /**
-     * @var UserManager
+     * @var AmpUserManager
      */
     private $userManager;
     
@@ -42,10 +41,6 @@ class OAuthUserProvider implements OAuthAwareUserProviderInterface, UserProvider
      */
     private $tokenStorage;
     
-    /**
-     * @var array
-     */
-    private $args;
     /**
      * @var Session
      */
@@ -59,15 +54,13 @@ class OAuthUserProvider implements OAuthAwareUserProviderInterface, UserProvider
      * OAuthUserProvider constructor.
      * @param AmpUserManager $userManager
      * @param TokenStorage $tokenStorage
-     * @param array $args
      * @param Session $session
      * @param Validator $validator
      */
-    public function __construct( AmpUserManager $userManager, TokenStorage $tokenStorage, $args = [], Session $session, $validator )
+    public function __construct( AmpUserManager $userManager, TokenStorage $tokenStorage, Session $session, $validator )
     {
         $this->userManager = $userManager;
         $this->tokenStorage = $tokenStorage;
-        $this->args = $args;
         $this->session = $session;
         $this->validator = $validator;
     }
@@ -84,7 +77,7 @@ class OAuthUserProvider implements OAuthAwareUserProviderInterface, UserProvider
     
     public function refreshUser( UserInterface $user )
     {
-        if ( !$user instanceof User ) {
+        if ( !$user instanceof AbstractUser ) {
             throw new UnsupportedUserException( sprintf( 'Instances of "%s" are not supported.', get_class( $user ) ) );
         }
         
@@ -99,18 +92,18 @@ class OAuthUserProvider implements OAuthAwareUserProviderInterface, UserProvider
     public function loadUserByOAuthUserResponse( UserResponseInterface $response )
     {
         $socialID = $response->getUsername();
-        /** @var User $user */
+        /** @var AbstractUser $user */
         $user = $this->userManager->loadUser( [ 'facebookId' => $socialID ] );
         $update = true;
         $email = $response->getEmail();
         //check if the user already has the corresponding social account
         if ( null === $user ) {
             //check if the user has a normal account
+            /** @var AbstractUser $user */
             $user = $this->userManager->loadUser( $email, 'email' );
             if ( null === $user || !$user instanceof UserInterface ) {
                 //if the user does not have a normal account, set it up:
-                /** @var User $user */
-                $name = $response->getNickname() ?? $response->getRealName();
+                $name = $response->getNickname() ? $response->getNickname() : $response->getRealName();
                 $user = $this->userManager->createUser( $name, md5( uniqid() ), $response->getEmail(), [ 'ROLE_OAUTH_USER' ] );
                 $user->setEmail( $email );
                 $user->setFullName( $name );

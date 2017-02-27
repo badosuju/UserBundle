@@ -19,9 +19,6 @@ class SecurityController extends Controller {
      * @Route("/login", name="security_login")
      */
     public function loginAction() {
-        $helper = $this->get( 'security.authentication_utils' );
-        $form = $this->get( 'amp_security.form_manager' )
-                     ->getLoginForm();
 
         return new RedirectResponse($this->generateUrl($this->getParameter('amp_userbundle.login_path')));
     }

@@ -112,6 +112,16 @@ abstract class AbstractUser implements UserInterface {
     protected $apiToken;
 
     /**
+     * @var
+     */
+    protected $googleID;
+
+    /**
+     * @var
+     */
+    protected $facebookID;
+
+    /**
      * User constructor.
      */
     public function __construct() {
@@ -121,6 +131,47 @@ abstract class AbstractUser implements UserInterface {
         $seed = new \DateTime;
         $this->apiToken = openssl_digest( $seed->getTimestamp(), 'sha1' );
     }
+
+    /**
+     * @return mixed
+     */
+    public function getGoogleID()
+    {
+        return $this->googleID;
+    }
+
+    /**
+     * @param mixed $googleID
+     * @return AbstractUser
+     */
+    public function setGoogleID($googleID)
+    {
+        $this->googleID = $googleID;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFacebookID()
+    {
+        return $this->facebookID;
+    }
+
+    /**
+     * @param mixed $facebookID
+     * @return AbstractUser
+     */
+    public function setFacebookID($facebookID)
+    {
+        $this->facebookID = $facebookID;
+
+        return $this;
+    }
+
+
+
 
     /**
      * @param $username

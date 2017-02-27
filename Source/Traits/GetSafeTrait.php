@@ -16,10 +16,9 @@ trait GetSafeTrait {
 
     /**
      * @param $name
-     * @param $attributes
      * @return null|string
      */
-    public function __call( $name, $attributes ) {
+    public function __call( $name ) {
         if ( substr( $name, 0 ) !== 'getSafe' ) {
             return null;
         }

@@ -21,18 +21,36 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
  */
 class TokenManager
 {
-    
+
+    /**
+     * @var Session
+     */
     private $session;
+    /**
+     * @var TokenStorage
+     */
     private $tokenStorage;
+    /**
+     * @var AuthorizationChecker
+     */
     private $authorizationChecker;
-    
+
+    /**
+     * TokenManager constructor.
+     * @param Session $session
+     * @param TokenStorage $tokenStorage
+     * @param AuthorizationChecker $authorizationChecker
+     */
     public function __construct(Session $session, TokenStorage $tokenStorage, AuthorizationChecker $authorizationChecker)
     {
         $this->session = $session;
         $this->tokenStorage = $tokenStorage;
         $this->authorizationChecker = $authorizationChecker;
     }
-    
+
+    /**
+     * @return string
+     */
     public function getToken()
     {
         if (!$this->authorizationChecker->isGranted('IS_AUTHENTICATED_FULLY')) {
@@ -43,7 +61,11 @@ class TokenManager
                                   ->getUser()
                                   ->getApiToken();
     }
-    
+
+    /**
+     * @param Request $request
+     * @return bool
+     */
     public function checkToken(Request $request)
     {
         if (null === $request->query->get('_token')) {

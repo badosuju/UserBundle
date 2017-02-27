@@ -122,6 +122,10 @@ abstract class AbstractUser implements UserInterface {
         $this->apiToken = openssl_digest( $seed->getTimestamp(), 'sha1' );
     }
 
+    /**
+     * @param $username
+     * @return $this
+     */
     public function setUsername( $username ) {
         if ( !$this->fullName ) {
             $this->fullName = $username;
@@ -139,55 +143,94 @@ abstract class AbstractUser implements UserInterface {
         return (string) $this->getUsername() . '-';
     }
 
+    /**
+     * @return null
+     */
     public function getFullName() {
         return $this->fullName;
     }
 
 
+    /**
+     * @param $fullName
+     * @return $this
+     */
     public function setFullName( $fullName ) {
         $this->fullName = $fullName;
 
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getFirstname() {
         return $this->firstname;
     }
 
+    /**
+     * @param $firstname
+     * @return $this
+     */
     public function setFirstname( $firstname ) {
         $this->firstname = $firstname;
 
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getLastname() {
         return $this->lastname;
     }
 
+    /**
+     * @param $lastname
+     * @return $this
+     */
     public function setLastname( $lastname ) {
         $this->lastname = $lastname;
 
         return $this;
     }
 
+    /**
+     * @param $role
+     * @return bool
+     */
     public function isGranted( $role ) {
         return in_array( $role, $this->getRoles() );
     }
 
+    /**
+     * @return null
+     */
     public function getUrl() {
         return $this->url;
     }
 
+    /**
+     * @param $url
+     * @return $this
+     */
     public function setUrl( $url ) {
         $this->url = $url;
 
         return $this;
     }
 
+    /**
+     * @return bool
+     */
     public function getGuest() {
         return $this->guest;
     }
 
+    /**
+     * @param $guest
+     * @return $this
+     */
     public function setGuest( $guest ) {
         $this->guest = $guest;
 
@@ -207,12 +250,20 @@ abstract class AbstractUser implements UserInterface {
         return array_unique( $roles );
     }
 
+    /**
+     * @param $role
+     * @return $this
+     */
     public function addRole( $role ) {
         $this->roles[] = $role;
 
         return $this;
     }
 
+    /**
+     * @param array $roles
+     * @return $this
+     */
     public function setRoles( array $roles ) {
         foreach ( $roles as $role ) {
             $this->addRole( $role );
@@ -221,18 +272,32 @@ abstract class AbstractUser implements UserInterface {
         return $this;
     }
 
+    /**
+     * @param $role
+     * @return bool
+     */
     public function hasRole( $role ) {
         return in_array( $role, $this->getRoles() );
     }
 
+    /**
+     * @param $role
+     */
     public function removeRole( $role ) {
         unset( $this->roles[ array_search( $role, $this->roles ) ] );
     }
 
+    /**
+     * @return mixed
+     */
     public function getId() {
         return $this->id;
     }
 
+    /**
+     * @param $id
+     * @return $this
+     */
     public function setId( $id ) {
         $this->id = $id;
 
@@ -246,20 +311,34 @@ abstract class AbstractUser implements UserInterface {
         return $this->username;
     }
 
+    /**
+     * @return mixed
+     */
     public function getPlainPassword() {
         return $this->plainPassword;
     }
 
+    /**
+     * @param $plainPassword
+     * @return $this
+     */
     public function setPlainPassword( $plainPassword ) {
         $this->plainPassword = $plainPassword;
 
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getPassword() {
         return $this->password;
     }
 
+    /**
+     * @param $password
+     * @return $this
+     */
     public function setPassword( $password ) {
         $this->password = $password;
 
@@ -273,36 +352,61 @@ abstract class AbstractUser implements UserInterface {
         return $this->salt;
     }
 
+    /**
+     * @param $salt
+     * @return $this
+     */
     public function setSalt( $salt ) {
         $this->salt = $salt;
 
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getEmail() {
         return $this->email;
     }
 
+    /**
+     * @param $email
+     * @return $this
+     */
     public function setEmail( $email ) {
         $this->email = $email;
 
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getLastLoggedIn() {
         return $this->lastLoggedIn;
     }
 
+    /**
+     * @param $lastLoggedIn
+     * @return $this
+     */
     public function setLastLoggedIn( $lastLoggedIn ) {
         $this->lastLoggedIn = $lastLoggedIn;
 
         return $this;
     }
 
+    /**
+     * @return bool
+     */
     public function getEnabled() {
         return $this->enabled;
     }
 
+    /**
+     * @param $enabled
+     * @return $this
+     */
     public function setEnabled( $enabled ) {
         $this->enabled = $enabled;
 
@@ -316,10 +420,17 @@ abstract class AbstractUser implements UserInterface {
         $this->plainPassword = null;
     }
 
+    /**
+     * @return string
+     */
     public function getApiToken() {
         return $this->apiToken;
     }
 
+    /**
+     * @param $apiToken
+     * @return $this
+     */
     public function setApiToken( $apiToken ) {
         $this->apiToken = $apiToken;
 
@@ -343,6 +454,7 @@ abstract class AbstractUser implements UserInterface {
 
     /**
      * @param AbstractGroup $group
+     * @return $this
      */
     public function addGroup( AbstractGroup $group ) {
         $this->groups->add( $group );

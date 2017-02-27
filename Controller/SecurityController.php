@@ -2,7 +2,6 @@
 namespace Ampisoft\UserBundle\Controller;
 
 
-use Ampisoft\UserBundle\Form\LoginType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;

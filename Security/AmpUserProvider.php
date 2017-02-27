@@ -57,6 +57,9 @@ class AmpUserProvider implements UserProviderInterface {
         return $this->loadUserByUsername( $user->getUsername() );
     }
 
+    /**
+     * @param AbstractUser $user
+     */
     public function updateUser( AbstractUser $user) {
         $this->userManager->updateUser($user);
     }

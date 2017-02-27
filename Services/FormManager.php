@@ -3,7 +3,7 @@
 namespace Ampisoft\UserBundle\Services;
 
 
-use Ampisoft\UserBundle\Form\LoginType;
+use Ampisoft\UserBundle\Form\Type\LoginType;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Routing\Router;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -43,7 +43,7 @@ class FormManager {
     /**
      * @param null $data
      * @param array $options
-     * @return \Symfony\Component\Form\Form
+     * @return \Symfony\Component\Form\FormInterface
      */
     public function getLoginForm( $data = null, array $options = [ ] ) {
         $options[ 'last_username' ] = $this->authenticationUtils->getLastUsername();

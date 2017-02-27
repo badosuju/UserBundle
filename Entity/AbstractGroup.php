@@ -44,29 +44,48 @@ abstract class AbstractGroup {
      */
     protected $users;
 
+    /**
+     * AbstractGroup constructor.
+     */
     public function __construct() {
         $this->users = new ArrayCollection();
     }
-    
+
+    /**
+     * @param $id
+     */
     public function setId( $id )
     {
         $this->id = $id;
     }
-    
+
+    /**
+     * @return mixed
+     */
     public function getId() {
         return $this->id;
     }
 
+    /**
+     * @return mixed
+     */
     public function getName() {
         return $this->name;
     }
 
+    /**
+     * @param $name
+     * @return $this
+     */
     public function setName( $name ) {
         $this->name = $name;
 
         return $this;
     }
 
+    /**
+     * @return array
+     */
     public function getRoles() {
         return $this->roles;
     }
@@ -101,22 +120,36 @@ abstract class AbstractGroup {
         return false;
     }
 
+    /**
+     * @param array $roles
+     * @return $this
+     */
     public function setRoles( array $roles ) {
         $this->roles = $roles;
 
         return $this;
     }
 
+    /**
+     * @return bool
+     */
     public function isActive() {
         return $this->active;
     }
 
+    /**
+     * @param $active
+     * @return $this
+     */
     public function setActive( $active ) {
         $this->active = $active;
 
         return $this;
     }
-    
+
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return (string)$this->name;

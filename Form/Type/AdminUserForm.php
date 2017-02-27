@@ -18,7 +18,11 @@ class AdminUserForm extends UserForm
     {
         parent::buildForm($builder, $options);
         $builder->add( 'roles', ChoiceType::class, [
-                'choices' => AmpUserManager::$userRolesNice,
+                'choices' => [
+                    'ROLE_USER',
+                    'ROLE_ADMIN',
+                    'ROLE_SUPER_ADMIN'
+                ],
             'multiple' => true,
             'expanded' => true,
             'required' => true

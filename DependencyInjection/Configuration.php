@@ -3,8 +3,6 @@
 namespace Ampisoft\UserBundle\DependencyInjection;
 
 
-use AppBundle\Entity\Group;
-use AppBundle\Entity\User;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -27,10 +25,9 @@ class Configuration implements ConfigurationInterface{
                         ->addDefaultsIfNotSet()
                         ->children()
                             ->scalarNode( 'user' )
-                                ->defaultValue( '/' . User::class)
+
                             ->end()
                             ->scalarNode( 'group' )
-                                ->defaultValue( '/' . Group::class )
                             ->end()
                         ->end()
                     ->end()

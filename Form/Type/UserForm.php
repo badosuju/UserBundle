@@ -1,6 +1,6 @@
 <?php
 
-namespace Ampisoft\UserBundle\Form;
+namespace Ampisoft\UserBundle\Form\Type;
 
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -50,6 +50,16 @@ class UserForm extends AbstractType {
         $resolver->setDefaults( [
             'data_class' => 'Ampisoft\UserBundle\Entity\User'
         ] );
+    }
+
+    public function getName()
+    {
+        return $this->getBlockPrefix();
+    }
+
+    public function getBlockPrefix()
+    {
+        return 'amp_user_form';
     }
 
 }

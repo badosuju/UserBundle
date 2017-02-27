@@ -24,7 +24,6 @@ class AmpUserExtension extends Extension {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        //$loader = new YamlFileLoader( new FileLocator( __DIR__ . '/../Resources/config' ) );
         $container->setParameter('amp_userbundle.templates.login', $config['templates']['login']);
         $container->setParameter('amp_userbundle.class.user', $config['classes']['user']);
         $container->setParameter('amp_userbundle.class.group', $config['classes']['group']);

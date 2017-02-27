@@ -111,7 +111,7 @@ abstract class AbstractGroup {
         return $this->active;
     }
 
-    public function setIsActive( $active ) {
+    public function setActive( $active ) {
         $this->active = $active;
 
         return $this;

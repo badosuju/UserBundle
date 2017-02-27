@@ -8,11 +8,7 @@
 
 namespace Ampisoft\UserBundle\Services;
 
-use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
-use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 use Symfony\Component\Templating\Helper\Helper;
-use Symfony\Component\Templating\Helper\HelperInterface;
 
 
 /**

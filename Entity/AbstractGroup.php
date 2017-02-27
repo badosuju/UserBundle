@@ -2,7 +2,6 @@
 namespace Ampisoft\UserBundle\Entity;
 
 
-use Ampisoft\UserBundle\Source\Traits\GetSafeTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -16,7 +15,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 abstract class AbstractGroup {
 
-    use GetSafeTrait;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")

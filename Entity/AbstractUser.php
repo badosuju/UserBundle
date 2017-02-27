@@ -2,7 +2,6 @@
 namespace Ampisoft\UserBundle\Entity;
 
 
-use Ampisoft\UserBundle\Source\Traits\GetSafeTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Ampisoft\UserBundle\Source\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
@@ -20,8 +19,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\MappedSuperclass()
  */
 abstract class AbstractUser implements UserInterface {
-
-    use GetSafeTrait;
 
     /**
      * @ORM\Id

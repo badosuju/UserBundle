@@ -23,7 +23,7 @@ class ApiTokenAuthenticatorTest extends \PHPUnit_Framework_TestCase {
     private $user;
 
     public function setUp() {
-        $this->user = $this->getMock( TestUser::class );
+        $this->user = $this->createMock( TestUser::class );
         $this->user->method( 'getApiToken' )
                    ->will( $this->returnValue( 'abcdef12345' ) );
 

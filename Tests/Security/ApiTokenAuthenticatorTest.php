@@ -22,8 +22,10 @@ class ApiTokenAuthenticatorTest extends \PHPUnit_Framework_TestCase {
     private $userRepository;
     private $user;
 
+    
+
     public function setUp() {
-        $this->user = $this->getMock( TestUser::class );
+        $this->user = $this->createMock( TestUser::class );
         $this->user->method( 'getApiToken' )
                    ->will( $this->returnValue( 'abcdef12345' ) );
 
@@ -46,7 +48,7 @@ class ApiTokenAuthenticatorTest extends \PHPUnit_Framework_TestCase {
         $authenticator = new ApiTokenAuthenticator( $this->em, TestUser::class );
         $request = new Request();
         $request->headers->set( 'x-token', 'abcdef12345' );
-        $this->assertEquals( 'abcdef12345', $authenticator->getCredentials( $request ) );
+        self::assertEquals( 'abcdef12345', $authenticator->getCredentials( $request ) );
     }
 
     public function testOnAuthenticationFailure() {
@@ -55,8 +57,8 @@ class ApiTokenAuthenticatorTest extends \PHPUnit_Framework_TestCase {
         $request = new Request();
         $e = new AuthenticationException();
         $response = $authenticator->onAuthenticationFailure( $request, $e);
-        $this->assertInstanceOf(JsonResponse::class, $response);
-        $this->assertEquals(401, $response->getStatusCode());
+        self::assertInstanceOf(JsonResponse::class, $response);
+        self::assertEquals(401, $response->getStatusCode());
     }
 }
 

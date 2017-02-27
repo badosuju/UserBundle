@@ -71,10 +71,10 @@ class AmpUserManager
     ) {
         $this->em = $em;
         $this->encoder = $encoder;
-        $this->userClass = $userClass;
-        $this->groupClass = $groupClass;
         $this->tokenStorage = $tokenStorage;
         $this->eventDispatcher = $eventDispatcher;
+        $this->userClass = $userClass;
+        $this->groupClass = $groupClass;
         $this->logger = $logger;
     }
 

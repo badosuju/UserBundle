@@ -8,21 +8,15 @@ namespace Ampisoft\UserBundle\Tests\Security;
 
 use Ampisoft\UserBundle\Entity\AbstractUser;
 use Ampisoft\UserBundle\Security\ApiTokenAuthenticator;
+use Ampisoft\UserBundle\Tests\BaseSecurityTestCase;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\User\UserProviderInterface;
-use PHPUnit\Framework\TestCase;
 
-class ApiTokenAuthenticatorTest extends TestCase {
-
-    private $em;
-    private $userRepository;
-    private $user;
-
-    
+class ApiTokenAuthenticatorTest extends BaseSecurityTestCase
+{
 
     public function setUp() {
         $this->user = $this->createMock( TestUser::class );
@@ -33,15 +27,7 @@ class ApiTokenAuthenticatorTest extends TestCase {
                                      ->disableOriginalConstructor()
                                      ->getMock();
 
-        $this->userRepository->method( 'findOneBy' )
-                             ->will( $this->returnValue( $this->user ) );
-
-        $this->em = $this->getMockBuilder( ObjectManager::class )
-                         ->disableOriginalConstructor()
-                         ->getMock();
-
-        $this->em->method( 'getRepository' )
-                 ->will( $this->returnValue( $this->userRepository ) );
+        parent::setUp();
     }
 
     public function testGetCredentials() {

@@ -6,6 +6,7 @@
 
 
 use Ampisoft\UserBundle\Services\AmpUserManager;
+use Ampisoft\UserBundle\Tests\BaseSecurityTestCase;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder as PasswordEncoder;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\EntityManager;
@@ -17,21 +18,9 @@ use PHPUnit\Framework\TestCase;
  * Class AmpUserManagerTest
  * @author M Holbrook-Bull
  */
-class AmpUserManagerTest extends TestCase
+class AmpUserManagerTest extends BaseSecurityTestCase
 {
-    private $em;
-    private $user;
-    private $userRepository;
-    private $groupRepository;
-    private $tokenStorage;
-    private $encoder;
-    private $logger;
-    private $eventDispatcher;
-    /** @var  AmpUserManager */
-    private $manager;
 
-    private $groupClass = 'Group';
-    private $userClass = 'User';
 
     public function setUp()
     {
@@ -46,55 +35,8 @@ class AmpUserManagerTest extends TestCase
 
         $this->group = $this->createMock(Group::class);
 
-        // repository
-        $this->userRepository = $this->getMockBuilder(EntityRepository::class)
-                                     ->disableOriginalConstructor()
-                                     ->getMock();
+        parent::setUp();
 
-        $this->userRepository->method('findOneBy')
-                             ->will($this->returnValue($this->user));
-
-        $this->groupRepository = $this->getMockBuilder(EntityRepository::class)
-                                      ->disableOriginalConstructor()
-                                      ->getMock();
-        $this->userRepository->method('findOneBy')
-                             ->will($this->returnValue($this->group));
-
-        // token storage
-        $this->tokenStorage = new TokenStorage();
-
-        // entity manager
-        $this->em = $this->getMockBuilder(EntityManager::class)
-                         ->disableOriginalConstructor()
-                         ->getMock();
-
-        $this->em->method('persist')
-                 ->will($this->returnValue(true));
-        $this->em->method('flush')
-                 ->will($this->returnValue(true));
-
-        // argument dependent return
-        $this->em->expects($this->any())
-                 ->method('getRepository')
-                 ->will($this->returnValueMap(
-                     [
-                         [$this->userClass, $this->userRepository],
-                         [$this->groupClass, $this->groupRepository],
-                     ]
-                 ));
-
-        // encoder
-        $this->encoder = $this->createMock(PasswordEncoder::class);
-        $this->encoder->method('encodePassword')
-                      ->will($this->returnValue('thisisencodedhonest'));
-
-        // logger
-        $this->logger = $this->createMock(\Monolog\Logger::class);
-        $this->logger->method('error')
-                     ->will($this->returnValue(true));
-
-        $this->manager = new AmpUserManager($this->em, $this->encoder, $this->tokenStorage, null, $this->userClass,
-            $this->groupClass, $this->logger);
     }
 
 

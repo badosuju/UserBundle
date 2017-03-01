@@ -27,6 +27,7 @@ class AmpUserManagerTest extends TestCase
     private $encoder;
     private $logger;
     private $eventDispatcher;
+    /** @var  AmpUserManager */
     private $manager;
 
     private $groupClass = 'Group';
@@ -35,9 +36,13 @@ class AmpUserManagerTest extends TestCase
     public function setUp()
     {
         // user class
+        /** @var AbstractUser user */
         $this->user = $this->createMock(User::class);
         $this->user->method('getApiToken')
                    ->will($this->returnValue('abcdef12345'));
+
+        $this->user->method('getRoles')
+                   ->will($this->returnValue(['ROLE_USER']));
 
         $this->group = $this->createMock(Group::class);
 
@@ -56,9 +61,7 @@ class AmpUserManagerTest extends TestCase
                              ->will($this->returnValue($this->group));
 
         // token storage
-        $this->tokenStorage = $this->createMock(TokenStorage::class);
-        $this->tokenStorage->method('setToken')
-                           ->will($this->returnValue(true));
+        $this->tokenStorage = new TokenStorage();
 
         // entity manager
         $this->em = $this->getMockBuilder(EntityManager::class)
@@ -105,10 +108,11 @@ class AmpUserManagerTest extends TestCase
         self::assertInstanceOf(Group::class, $group);
         self::assertEquals('testGroup', $group->getName());
 
-
+        $user = $this->manager->createUser('testUser', 'password', 'email@gmail.com', 'testgroup');
+        self::assertInstanceOf(User::class, $user);
     }
 
-    public function testUserUpdate( )
+    public function testUserUpdate()
     {
         $user = new User();
         $user->setPlainPassword('test');
@@ -119,6 +123,11 @@ class AmpUserManagerTest extends TestCase
         self::assertEquals('thisisencodedhonest', $user->getPassword());
     }
 
+    public function testLoginUser()
+    {
+        $this->manager->loginUser($this->user);
+        self::assertInstanceOf(\Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken::class, $this->tokenStorage->getToken());
+    }
 
 }
 

@@ -55,9 +55,6 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator {
             ->findOneBy(['apiToken' => $credentials]);
 
         if(!$user) {
-
-
-
             throw new AuthenticationCredentialsNotFoundException();
         }
 

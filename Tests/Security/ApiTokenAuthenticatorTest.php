@@ -14,9 +14,9 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
+use PHPUnit\Framework\TestCase;
 
-
-class ApiTokenAuthenticatorTest extends \PHPUnit_Framework_TestCase {
+class ApiTokenAuthenticatorTest extends TestCase {
 
     private $em;
     private $userRepository;

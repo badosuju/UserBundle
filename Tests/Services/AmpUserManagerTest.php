@@ -11,12 +11,13 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\EntityManager;
 use Ampisoft\UserBundle\Entity\AbstractUser;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class AmpUserManagerTest
  * @author M Holbrook-Bull
  */
-class AmpUserManagerTest extends PHPUnit_Framework_TestCase
+class AmpUserManagerTest extends TestCase
 {
     private $em;
     private $user;
@@ -103,7 +104,6 @@ class AmpUserManagerTest extends PHPUnit_Framework_TestCase
         $group = $this->manager->createUserGroup('testGroup');
         self::assertInstanceOf(Group::class, $group);
         self::assertEquals('testGroup', $group->getName());
-
 
 
     }

@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit colors="true" bootstrap="vendor/autoload.php">
+<phpunit
+        backupGlobals="true"
+        backupStaticAttributes="false"
+        cacheTokens="false"
+        convertErrorsToExceptions="true"
+        convertNoticesToExceptions="true"
+        convertWarningsToExceptions="true"
+        addUncoveredFilesFromWhitelist="true"
+        forceCoversAnnotation="false"
+        colors="true"
+        bootstrap="vendor/autoload.php"
+>
     <testsuites>
         <testsuite name="AmpUserBundle Test Suite">
             <directory suffix="Test.php">./Tests</directory>
@@ -8,10 +19,18 @@
     </testsuites>
     <filter>
         <whitelist>
-            <directory>./</directory>
+            <directory>./Command</directory>
+            <directory>./Controller</directory>
+            <directory>./Form</directory>
+            <directory>./Security</directory>
+            <directory>./Services</directory>
+            <directory>./Source</directory>
+            <directory>./Entity</directory>
+            <directory>./Tests</directory>
             <exclude>
                 <directory>./Resources</directory>
-                <directory>./Tests</directory>
+                <directory>./DependencyInjection</directory>
+                <directory>./vendor</directory>
             </exclude>
         </whitelist>
     </filter>

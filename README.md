@@ -1,9 +1,9 @@
 Ampisoft User Bundle
 Ampisoft User Bundle
 ===================================
-| Branch | Status |
-|:---|:-----------|
-| Master | [![Build Status](https://secure.travis-ci.org/Ampisoft/UserBundle.png?branch=master)](http://travis-ci.org/Ampisoft/UserBundle) |
+
+[![Build Status](https://secure.travis-ci.org/Ampisoft/UserBundle.png?branch=master)](http://travis-ci.org/Ampisoft/UserBundle) |
+[![Coverage Status](https://coveralls.io/repos/github/Ampisoft/UserBundle/badge.svg?branch=master)](https://coveralls.io/github/Ampisoft/UserBundle?branch=master)
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/008fcf8d-00fd-4e88-92d0-b498028fda13/big.png)](https://insight.sensiolabs.com/projects/008fcf8d-00fd-4e88-92d0-b498028fda13)
 

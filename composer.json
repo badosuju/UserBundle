@@ -40,10 +40,5 @@
     "psr-4": {
       "Ampisoft\\UserBundle\\": ""
     }
-  },
-  "extra": {
-    "branch-alias": {
-      "dev-master": "master"
-    }
   }
 }

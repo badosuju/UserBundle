@@ -10,7 +10,10 @@ Ampisoft User Bundle
 
 Provides a clean and simple solution for those with low-end user bundle needs.
 
-Test
+##Dependencies
+
+- PHP 7.0
+- Symfony 3.x
 
 ##Features
 

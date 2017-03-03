@@ -11,7 +11,7 @@ use Symfony\Component\Form\FormBuilderInterface;
  * @package Ampisoft\UserBundle\Form
  * @author M Holbrook-Bull
  */
-class AdminUserForm extends UserForm
+class AdminUserFormType extends UserFormType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

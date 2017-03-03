@@ -2,6 +2,7 @@
 
 namespace Ampisoft\UserBundle\Form\Type;
 
+use Ampisoft\UserBundle\Entity\AbstractUser;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -15,7 +16,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * Class UserForm
  * @package AmpBundle\Form
  */
-class UserForm extends AbstractType {
+class UserFormType extends AbstractType {
 
     /**
      * @param FormBuilderInterface $builder
@@ -27,7 +28,8 @@ class UserForm extends AbstractType {
             ->add( 'email', TextType::class, [ 'required' => true ] )
             ->add( 'full_name', TextType::class, [ 'required' => true ] )
             ->add( 'plain_password', RepeatedType::class, [
-                'type' => PasswordType::class, 'invalid_message' => 'The password fields must match.', 'options' => [
+                'type' => PasswordType::class,
+                'options' => [
                     'attr' => [
                         'class' => 'password-field'
                     ]
@@ -45,7 +47,7 @@ class UserForm extends AbstractType {
      */
     public function configureOptions( OptionsResolver $resolver ) {
         $resolver->setDefaults( [
-            'data_class' => 'Ampisoft\UserBundle\Entity\User'
+            'data_class' => AbstractUser::class
         ] );
     }
 

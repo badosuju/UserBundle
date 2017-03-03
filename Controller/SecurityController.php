@@ -3,8 +3,8 @@ namespace Ampisoft\UserBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class SecurityController extends Controller {
 
     /**
-     * @Route("/login", name="security_login")
+     * @Ro`ute("/login", name="security_login")
      */
     public function loginAction() {
 

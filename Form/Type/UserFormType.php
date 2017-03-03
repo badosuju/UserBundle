@@ -47,7 +47,7 @@ class UserFormType extends AbstractType {
      */
     public function configureOptions( OptionsResolver $resolver ) {
         $resolver->setDefaults( [
-            'data_class' => AbstractUser::class
+            'data_class' => 'AppBundle/Entity/User'
         ] );
     }
 

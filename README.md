@@ -155,16 +155,15 @@ imports:
 ```
 
 ###Config.yml 
-***(omit to use defaults)***
 
 ```yml
 amp_user:
-    classes:
+    classes: # required
         user: AppBundle\Entity\User
         group: AppBundle\Entity\Group
-    templates:
+    templates: # optional
         login: 'AmpUserBundle:security:login.html.twig'
-    paths:
+    paths: # required
         login: 'index'    
 ```
 - templates: use this to override the login template

@@ -20,11 +20,11 @@ Provides a clean and simple solution for those with low-end user bundle needs.
 - Form based authentication
 - Api token based authentication
 - User base class
-- Group base class (use or don't use, up to you)
+- Group base class
 
 ##What it doesn't do..
 
-- registration
+- registration (although I might do this)
 - profile pages
 - lots of bloaty stuff you dont need
 
@@ -32,7 +32,7 @@ Provides a clean and simple solution for those with low-end user bundle needs.
 
 Using composer:
 ```bash
-$ composer require ampisoft/user-bundle:1.0.3
+$ composer require ampisoft/user-bundle:1.0.4
 ```
 
 Register in AppKernel.php
@@ -52,6 +52,8 @@ Register in AppKernel.php
 ###Setup your user entity
 
 ***(alter tables names etc as you need)***
+
+*you need to at least extend the mapped superclasses*
 
 ```php
 
@@ -83,7 +85,6 @@ you need to be extending the mapped superclasses
 
 ```php
 use Ampisoft\UserBundle\Entity\AbstractGroup;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -104,7 +105,7 @@ class Group extends AbstractGroup {
 
 #Configuration
 
->For API authentication specifics, please see the seperate [setup](Docs/APIusage.md) document.
+>For API authentication specifics, please see the separate [setup](Docs/APIusage.md) document.
 
 ###Security.yml
 
@@ -112,6 +113,7 @@ class Group extends AbstractGroup {
     providers:
         amp_user_bundle:
             entity:
+                # your user classname here
                 class: AppBundle:User
                 property: username
     encoders:
@@ -181,3 +183,6 @@ This will create an admin user as follows:
 | Username | Password | Roles |
 |:--|:--|:--
 | username | password | ROLE_SUPER_ADMIN |
+
+
+Please see the [CHANGELOG](CHANGELOG.md) for details of updates

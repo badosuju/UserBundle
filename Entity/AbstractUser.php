@@ -485,6 +485,11 @@ abstract class AbstractUser implements UserInterface {
         return $this;
     }
 
+    public function setGroups(ArrayCollection $collection)
+    {
+        $this->groups = $collection;
+    }
+
     /**
      * @return array
      */

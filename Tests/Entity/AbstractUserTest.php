@@ -9,6 +9,7 @@ namespace Ampisoft\UserBundle\Tests;
 
 use Ampisoft\UserBundle\Entity\AbstractGroup;
 use Ampisoft\UserBundle\Entity\AbstractUser;
+use Doctrine\Common\Collections\ArrayCollection;
 use PHPUnit\Framework\TestCase;
 
 class AbstractUserTest extends TestCase
@@ -23,7 +24,7 @@ class AbstractUserTest extends TestCase
 
         $reflection = new \ReflectionClass(TestUser::class);
 
-        $setters = array_filter($reflection->getMethods(), function($method){
+        $setters = array_filter($reflection->getMethods(), function ($method) {
             return strpos($method, 'set') !== false;
         });
 
@@ -32,19 +33,25 @@ class AbstractUserTest extends TestCase
             $setName = $method->getName();
             $getName = str_replace('set', 'get', $method->getName());
 
-            $params = $method->getParameters();
-            if($params[0]->isArray()) {
-                $data = ['test'];
-                $array = true;
-            } else {
-                $data = 'test';
-                $array = false;
+            switch ($setName) {
+                case 'setGroups':
+                    continue 2;
+
+                    break;
+                default:
+                    $params = $method->getParameters();
+                    if ($params[0]->isArray()) {
+                        $data = ['test'];
+                        $array = true;
+                    } else {
+                        $data = 'test';
+                        $array = false;
+                    }
             }
 
             $user->$setName($data);
             self::assertEquals($array ? ['test'] : 'test', $user->$getName());
         }
-
 
 
     }
@@ -63,7 +70,7 @@ class AbstractUserTest extends TestCase
         foreach ($has as $method) {
             $data = null;
 
-            switch($method->getName()) {
+            switch ($method->getName()) {
                 case 'hasRole':
                     $data = 'ROLE_ADMIN';
                     continue;

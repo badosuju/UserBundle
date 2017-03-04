@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SecurityController extends Controller {
 
     /**
-     * @Ro`ute("/login", name="security_login")
+     * @Route("/login", name="security_login")
      */
     public function loginAction() {
 
